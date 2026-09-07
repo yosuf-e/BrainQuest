@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <title>BrainQuest Learning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/15126/15126762.png">
-  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/128/15126/15126762.png">
+  <link rel="icon" type="image/png" href="https://github.com/yosuf-e/BrainQuest/blob/main/Logo.png?raw=true">
+  <link rel="apple-touch-icon" href="https://github.com/yosuf-e/BrainQuest/blob/main/Logo.png?raw=true">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="ela_data.js"></script>
@@ -526,37 +526,49 @@
         btn.className =
           'px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-sm font-semibold';
         btn.addEventListener('click', () => {
+
+  // Disable all buttons immediately to prevent money glitch
+          document.querySelectorAll('#mathChoices button').forEach(b => {
+            b.disabled = true;
+            b.classList.add('opacity-50', 'cursor-not-allowed');
+          });
+
           if (c === currentMathAnswer) {
-            mathFeedback.textContent = 'Correct! +10 ' +
-              'XP and +' +
-              '10 coins.';
+            mathFeedback.textContent = 'Correct! +10 XP and +10 coins.';
             mathFeedback.className = 'text-sm text-emerald-400';
             soundCorrect.currentTime = 0;
             soundCorrect.play();
             addCoins(10);
             addXP(10);
             launchConfetti();
+
+            // Automatically load next question after 1 second
+            setTimeout(() => {
+              generateMathQuestion(currentGrade);
+            }, 1000);
+
           } else {
             let feedbackText = 'Oops, try again!';
             if (currentGrade === 6 && currentShapeType) {
-              if (currentShapeType === 'circle') {
-                feedbackText += ' Area of a circle: A = πr².';
-              } else if (currentShapeType === 'square') {
-                feedbackText += ' Area of a square: A = s².';
-              } else if (currentShapeType === 'rectangle') {
-                feedbackText += ' Area of a rectangle: A = l × w.';
-              } else if (currentShapeType === 'rhombus') {
-                feedbackText += ' Area of a rhombus: A = (d₁ × d₂) / 2.';
-              } else if (currentShapeType === 'triangle') {
-                feedbackText += ' Area of a triangle: A = ½ × b × h.';
-              }
+              if (currentShapeType === 'circle') feedbackText += ' Area of a circle: A = πr².';
+              if (currentShapeType === 'square') feedbackText += ' Area of a square: A = s².';
+              if (currentShapeType === 'rectangle') feedbackText += ' Area of a rectangle: A = l × w.';
+              if (currentShapeType === 'rhombus') feedbackText += ' Area of a rhombus: A = (d₁ × d₂) / 2.';
+              if (currentShapeType === 'triangle') feedbackText += ' Area of a triangle: A = ½ × b × h.';
             }
+
             mathFeedback.textContent = feedbackText;
             mathFeedback.className = 'text-sm text-pink-400';
             soundWrong.currentTime = 0;
             soundWrong.play();
+
+            // Load next question after 1.5 seconds
+            setTimeout(() => {
+              generateMathQuestion(currentGrade);
+            }, 1500);
           }
         });
+
         mathChoices.appendChild(btn);
       });
     }
