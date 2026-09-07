@@ -50,9 +50,10 @@
 <body class="minecraft-sky-full text-slate-100 min-h-screen">
 
   <!-- Top Nav -->
-  <nav class="bg-slate-800/90 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
-    <button data-page="home" class="text-lg font-bold page-link">BrainQuest</button>
-    <button data-page="home" class="page-link">Home</button>
+  <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
+  <button><img src="https://github.com/yosuf-e/BrainQuest/blob/main/BrainQuest%20Logo.png?raw=true"
+    style="height: 40px; width:40px; border-radius: 20%;" class="page-link" data-page="home" alt="Logo"></button>
+
     <button data-page="math" class="page-link">Math</button>
     <button data-page="ela" class="page-link">ELA</button>
     <button data-page="games" class="page-link">Games</button>
@@ -649,6 +650,7 @@ function loadElaData() {
   }
   const entry = levelArray[Math.floor(Math.random() * levelArray.length)];
 
+
   elaCitation.textContent = entry.citation;
   elaText.textContent = entry.text;
   elaQuestionsDiv.innerHTML = "";
@@ -689,29 +691,48 @@ function loadElaData() {
   submitBtn.textContent = "Submit Answers";
   submitBtn.className =
     "mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold";
-  submitBtn.addEventListener("click", () => {
-    let correctCount = 0;
-    entry.questions.forEach((q, idx) => {
-      const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
-      if (selected && parseInt(selected.value, 10) === q.correctIndex) {
-        correctCount++;
-      }
-    });
-    if (correctCount === entry.questions.length) {
-      elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +20 XP and +20 coins.`;
-      elaFeedback.className = "text-sm text-emerald-400";
-      soundCorrect.currentTime = 0;
-      soundCorrect.play();
-      addCoins(20);
-      addXP(20);
-      launchConfetti();
-    } else {
-      elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
-      elaFeedback.className = "text-sm text-pink-400";
-      soundWrong.currentTime = 0;
-      soundWrong.play();
+  submitBtn.addEventListener('click', () => {
+  // Disable all radio inputs immediately to prevent repeat clicks
+  document.querySelectorAll('#elaQuestions input[type="radio"]').forEach(r => {
+    r.disabled = true;
+  });
+  submitBtn.disabled = true;
+  submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+  let correctCount = 0;
+  entry.questions.forEach((q, idx) => {
+    const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
+    if (selected && parseInt(selected.value, 10) === q.correctIndex) {
+      correctCount++;
     }
   });
+
+  if (correctCount === entry.questions.length) {
+    elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +30 XP and +30 coins.`;
+    elaFeedback.className = 'text-sm text-emerald-400';
+    soundCorrect.currentTime = 0;
+    soundCorrect.play();
+    addCoins(30);
+    addXP(30);
+    launchConfetti();
+
+    // Load next reading set after 1.5 seconds
+    setTimeout(() => {
+      loadElaData();
+    }, 1500);
+  } else {
+    elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
+    elaFeedback.className = 'text-sm text-pink-400';
+    soundWrong.currentTime = 0;
+    soundWrong.play();
+
+    // Load next reading set after 2 seconds
+    setTimeout(() => {
+      loadElaData();
+    }, 2000);
+  }
+});
+
 
   elaQuestionsDiv.appendChild(submitBtn);
 }
