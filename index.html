@@ -1,854 +1,720 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
-  <link rel="apple-touch-icon" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BrainQuest Academy</title>
-
-  <!-- Tailwind CDN -->
+  <meta charset="UTF-8" />
+  <title>BrainQuest Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/15126/15126762.png">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/128/15126/15126762.png">
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <style>
-    :root {
-      --particle-color: #facc15;
-    }
-
-    /* Floating animation */
-    .floating {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-      100% {
-        transform: translateY(0px);
-      }
-    }
-
-    .wobble {
-      animation: wobble 0.4s ease;
-    }
-
-    @keyframes wobble {
-      0% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(-4px);
-      }
-
-      50% {
-        transform: translateX(4px);
-      }
-
-      75% {
-        transform: translateX(-2px);
-      }
-
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    .bounce {
-      animation: bounce 0.5s ease;
-    }
-
-    @keyframes bounce {
-      0% {
-        transform: scale(1);
-      }
-
-      30% {
-        transform: scale(1.1);
-      }
-
-      60% {
-        transform: scale(0.95);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    canvas#confettiCanvas {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 60;
-    }
-
-    /* Unified theme variables (simple) */
-    .theme-dark {
-      --bg-main: #0f172a;
-      --bg-card: #0f172a;
-      --text-main: #f1f5f9;
-      --text-soft: #cbd5e1;
-      --card-border: #334155;
-    }
-
-    .theme-light {
-      --bg-main: #f8fafc;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;
-      --text-soft: #475569;
-      --card-border: #cbd5e1;
-    }
-
-    body {
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      transition: background-color .3s, color .3s;
-    }
-
-    .theme-card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--card-border);
-    }
-
-    .theme-text-soft {
-      color: var(--text-soft);
-    }
-
-    /* Modal sizing */
-    #gameModal .modal-inner {
-      width: 80%;
-      height: 80%;
-    }
-
-    /* Small helpers */
-    .hidden {
-      display: none;
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
 
-<body class="theme-dark">
+  <!-- Top Nav -->
+  <nav class="bg-slate-800/90 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
+    <button data-page="home" class="text-lg font-bold page-link">BrainQuest</button>
+    <button data-page="home" class="page-link">Home</button>
+    <button data-page="math" class="page-link">Math</button>
+    <button data-page="ela" class="page-link">ELA</button>
+    <button data-page="games" class="page-link">Games</button>
+    <span class="ml-auto flex items-center gap-4 text-xs">
+      <span class="flex items-center gap-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/8727/8727031.png" alt="XP" class="w-4 h-4">
+        <span id="xpDisplay" class="font-bold">0</span>
+      </span>
+      <span class="flex items-center gap-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" alt="Coins" class="w-4 h-4">
+        <span id="coinDisplay" class="font-bold">0</span>
+      </span>
+    </span>
+  </nav>
 
-  <!-- Confetti Canvas -->
-  <canvas id="confettiCanvas"></canvas>
+  <main class="max-w-5xl mx-auto p-4 space-y-8">
+
+    <!-- HOME PAGE -->
+    <section id="page-home" class="space-y-6">
+      <div class="text-center mt-10 space-y-4">
+        <h1 class="text-4xl font-bold">Welcome to BrainQuest!</h1>
+        <p class="text-slate-300 text-lg">
+          Visual math, smart ELA, in‑page games, and rewards powered by XP and coins.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-8">
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+          <img src="https://cdn-icons-png.flaticon.com/128/12056/12056961.png" alt="Math-Icon" style="height: 40px; width: 40px;">
+          <h2 class="text-xl font-semibold">Math Missions</h2>
+          <p class="text-sm text-slate-300">
+            Grade‑based topics from visual apples to geometry with shapes.
+          </p>
+          <button data-page="math"
+                  class="page-link mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full">
+            Start Math
+          </button>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+          <img src="https://cdn-icons-png.flaticon.com/128/5526/5526264.png" alt="ELA-Icon" style="height: 40px; width: 40px;">
+          <h2 class="text-xl font-semibold">ELA Quests</h2>
+          <p class="text-sm text-slate-300">Reading passages with MCQs loaded from JSON.</p>
+          <button data-page="ela"
+                  class="page-link mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full">
+            Start ELA
+          </button>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+          <img src="https://cdn-icons-png.flaticon.com/128/808/808439.png" alt="Game-Icon" style="height: 40px; width: 40px;">
+          <h2 class="text-xl font-semibold">Games Arcade</h2>
+          <p class="text-sm text-slate-300">Play inside the page with a 3‑minute timer.</p>
+          <button data-page="games"
+                  class="page-link mt-2 px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold w-full">
+            Open Arcade
+          </button>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+          <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Profile-Icon" style="height: 40px; width: 40px;">
+          <h2 class="text-xl font-semibold">Profile Customization</h2>
+          <p class="text-sm text-slate-300">😁 COMING SOON!</p>
+          <button data-page=""
+                  class="page-link mt-2 px-3 py-2 rounded-lg bg-slate-600 text-slate-900 font-semibold w-full">
+            ⚡ COMING SOON ⚡
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATH PAGE -->
+    <section id="page-math" class="space-y-6 hidden">
+      <h2 class="text-2xl font-bold mt-4">Math Missions (Grades 1–6)</h2>
+
+      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-4">
+        <label class="block text-sm mb-1">Choose Grade:</label>
+        <select id="mathGrade" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm">
+          <option value="1">Grade 1 – Counting & Visual Addition (Apples)</option>
+          <option value="2">Grade 2 – Patterns & Missing Numbers (Apples)</option>
+          <option value="3">Grade 3 – Basic Multiplication & Division</option>
+          <option value="4">Grade 4 – Properties & Solving for x</option>
+          <option value="5">Grade 5 – Order of Operations & Equations</option>
+          <option value="6">Grade 6 – Geometry & Area (Shapes)</option>
+        </select>
+
+        <button id="newMathQuestion"
+          class="mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full">
+          New Math Question
+        </button>
+
+        <div id="mathQuestionBox" class="mt-3 space-y-3">
+          <p id="mathQuestionText" class="text-lg font-semibold text-center"></p>
+          <div id="mathVisual" class="text-4xl text-center leading-relaxed"></div>
+          <div id="mathSvgContainer" class="flex justify-center mt-2"></div>
+          <div id="mathChoices" class="grid grid-cols-2 gap-2 mt-3"></div>
+          <p id="mathFeedback" class="text-sm mt-2 text-center"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELA PAGE -->
+    <section id="page-ela" class="space-y-6 hidden">
+      <h2 class="text-2xl font-bold mt-4">ELA Quests</h2>
+
+      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-4">
+        <label class="block text-sm mb-1">Choose Level:</label>
+        <select id="elaLevel" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm">
+          <option value="elementary">Elementary</option>
+          <option value="middle">Middle School</option>
+          <option value="high">High School</option>
+        </select>
+
+        <button id="loadEla"
+          class="mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full">
+          Load Reading & Questions
+        </button>
+
+        <div id="elaContent" class="mt-3 space-y-3">
+          <div>
+            <h3 class="text-sm font-semibold">Reading Citation</h3>
+            <p id="elaCitation" class="text-xs text-slate-300"></p>
+          </div>
+
+          <article class="bg-slate-900/70 border border-slate-700 rounded-xl p-3 text-sm leading-relaxed">
+            <p id="elaText"></p>
+          </article>
+
+          <div id="elaQuestions" class="space-y-3"></div>
+          <p id="elaFeedback" class="text-sm mt-2"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAMES PAGE -->
+    <section id="page-games" class="space-y-6 hidden">
+      <h2 class="text-2xl font-bold mt-4">Rewards Arcade</h2>
+      <p class="text-sm text-slate-300">
+        Earn
+        <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+        by answering questions correctly, then spend them on 3‑minute game passes. Games open inside the page.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Smash Karts -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+          <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200"
+               height="100" width="100" class="rounded-xl mx-auto">
+          <h3 class="text-sm font-semibold text-center">Smash Karts</h3>
+          <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full"
+                  data-url="https://smashkarts.io/" data-cost="130">
+            Play 3‑Mins (
+            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            130)
+          </button>
+        </div>
+
+        <!-- Adventure Game -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+          <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png"
+               height="100" width="100" class="rounded-xl mx-auto">
+          <h3 class="text-sm font-semibold text-center">Adventure Game</h3>
+          <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full"
+                  data-url="https://vectaria.io/" data-cost="90">
+            Play 3‑Mins (
+            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            90)
+          </button>
+        </div>
+
+        <!-- Subway Surfers -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+          <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/1c920b9279c2bedec567c1b58129ae8f/subway-surfers-logo.png"
+               height="100" width="100" class="rounded-xl mx-auto">
+          <h3 class="text-sm font-semibold text-center">Subway Surfers Game</h3>
+          <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold w-full"
+                  data-url="https://running-games.io/subway-run" data-cost="150">
+            Play 3‑Mins (
+            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            150)
+          </button>
+        </div>
+
+        <!-- Temple Run -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+          <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/TempleRun.jpg"
+               height="100" width="100" class="rounded-xl mx-auto">
+          <h3 class="text-sm font-semibold text-center">Temple Run Game</h3>
+          <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full"
+                  data-url="https://temple-run.com/" data-cost="150">
+            Play 3‑Mins (
+            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            150)
+          </button>
+        </div>
+
+        <!-- Fire Boy & Water Girl -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk7e0y5fGlmD5aNGyyX6AF7P-fJFyg6RS1LiS2Kk6X4WW_qZeyZR4HHkBQfe1AZsU31_mUrqcq2nYH2djKAiBgbchq-YofK0CX8IBT&s=10"
+               height="100" width="100" class="rounded-xl mx-auto">
+          <h3 class="text-sm font-semibold text-center">Fire Boy & Water Girl Game</h3>
+          <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full"
+                  data-url="https://www.fireboynwatergirl.com/?p=game&id=1" data-cost="120">
+            Play 3‑Mins (
+            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            120)
+          </button>
+        </div>
+
+        <!-- World Guessr -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+          <img src="https://imgs.crazygames.com/worldguessr_1x1/20241018082521/worldguessr_1x1-cover?format=auto&quality=100&metadata=none&width=1200"
+               height="100" width="100" class="rounded-xl mx-auto">
+          <h3 class="text-sm font-semibold text-center">World Guessr Game</h3>
+          <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold w-full"
+                  data-url="https://www.worldguessr.com/" data-cost="80">
+            Play 3‑Mins (
+            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            80)
+          </button>
+        </div>
+      </div>
+
+      <!-- Embedded game area -->
+      <div id="gameContainer" class="mt-6 hidden">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-semibold">Game Session (3 Minutes)</h3>
+          <span class="text-sm">Time left: <span id="gameTimer">03:00</span></span>
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden">
+          <iframe id="gameFrame" src="" class="w-full h-[480px]" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Sounds -->
   <audio id="soundCorrect">
-    <source src="https://cdn.pixabay.com/audio/2025/06/06/audio_033375aac8.mp3" type="audio/ogg">
+    <source src="https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3" type="audio/ogg">
   </audio>
   <audio id="soundWrong">
     <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_8b0fae46ef.mp3" type="audio/ogg">
   </audio>
+  <audio id="soundTimeUp">
+    <source src="https://cdn.pixabay.com/audio/2024/10/10/audio_7c1f7894bd.mp3" type="audio/ogg">
+  </audio>
+  <audio id="BackgroundMusic">
+    <source src="https://cdn.pixabay.com/audio/2024/10/10/audio_7c1f7894bd.mp3" type="audio/ogg">
+  </audio>
 
-  <div id="app" class="min-h-screen flex flex-col">
-
-    <!-- Header -->
-    <header class="sticky top-0 z-40 bg-opacity-80 backdrop-blur border-b" style="background:rgba(15,23,42,0.9);">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl text-yellow-400"><i class="fa-solid fa-brain"></i></span>
-            <div>
-              <h1 class="text-lg font-bold tracking-wide">BrainQuest Academy</h1>
-              <p class="text-xs theme-text-soft">Gamified Math & Reading Adventures</p>
-            </div>
-          </div>
-
-          <button id="themeToggle" class="ml-4 px-3 py-1 rounded-full border text-xs flex items-center gap-2">
-            <span class="theme-icon"><i class="fa-solid fa-sun text-yellow-300"></i></span>
-            <span id="themeLabel">Light Mode</span>
-          </button>
-        </div>
-
-        <!-- HUD -->
-        <div class="flex items-center gap-4 text-xs md:text-sm">
-          <div class="flex items-center gap-2"><i class="fa-solid fa-user-astronaut text-cyan-300"></i><span id="hudAvatar" class="font-semibold">Rookie Explorer</span></div>
-          <div class="flex items-center gap-2"><i class="fa-solid fa-star text-yellow-400"></i><span>Level</span><span id="hudLevel" class="font-bold">1</span></div>
-          <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-amber-400"></i><span>XP</span><span id="hudXP" class="font-bold">0</span></div>
-          <div class="flex items-center gap-2"><span class="text-orange-500"><i class="fa-solid fa-fire"></i></span><span>Streak</span><span id="hudStreak" class="font-bold">0</span></div>
-          <div class="flex items-center gap-2"><span class="text-emerald-400"><i class="fa-solid fa-coins"></i></span><span>Brain Coins</span><span id="hudCoins" class="font-bold">0</span></div>
-        </div>
-      </div>
-
-      <!-- Nav -->
-      <nav class="max-w-6xl mx-auto px-4 pb-3 flex gap-2 md:gap-4 text-xs md:text-sm">
-        <button data-route="home"
-          class="route-btn px-3 py-2 rounded-full bg-slate-800 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-house"></i><span>Home</span></button>
-        <button data-route="math"
-          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-calculator text-red-400"></i><span>Math Arena</span></button>
-        <button data-route="story"
-          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i><span>Reading Lab (ELA)</span></button>
-        <button data-route="shop"
-          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-store"></i><span>Reward Shop</span></button>
-        <button data-route="profile"
-          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-id-card"></i><span>Profile & Stats</span></button>
-      </nav>
-    </header>
-
-    <!-- Main -->
-    <main class="flex-1">
-      <div class="max-w-6xl mx-auto px-4 py-6 space-y-6">
-
-        <!-- HOME -->
-        <section id="route-home" class="route-section">
-          <div class="grid md:grid-cols-2 gap-6 items-center">
-            <div class="space-y-4">
-              <h2 class="text-2xl md:text-3xl font-bold">Welcome to <span class="text-cyan-300">BrainQuest Academy</span></h2>
-              <p class="text-sm md:text-base theme-text-soft">Practice math, craft dynamic stories, and level up your brain with XP, streaks, and Brain Coins. Unlock avatars, themes, and special effects as you play.</p>
-
-              <div class="flex flex-wrap gap-3">
-                <div class="px-3 py-2 rounded-xl theme-card flex items-center gap-2 floating"><i class="fa-solid fa-stopwatch text-amber-400"></i><span class="text-xs">Beat the Clock Mode</span></div>
-                <div class="px-3 py-2 rounded-xl theme-card flex items-center gap-2 floating"><i class="fa-solid fa-peace text-emerald-400"></i><span class="text-xs">Take Your Time Mode</span></div>
-                <div class="px-3 py-2 rounded-xl theme-card flex items-center gap-2 floating"><i class="fa-solid fa-wand-magic-sparkles text-cyan-300"></i><span class="text-xs">AI-style Story Generator</span></div>
-              </div>
-
-              <div class="flex gap-3 mt-4">
-                <button data-route="math"
-                  class="route-btn px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold shadow-lg">Enter Math Arena</button>
-                <button data-route="story"
-                  class="route-btn px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold shadow-lg">Explore Story Lab</button>
-              </div>
-            </div>
-
-            <div class="relative">
-              <div class="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-cyan-500/30 blur-2xl"></div>
-              <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-emerald-500/30 blur-2xl"></div>
-
-              <div class="relative theme-card rounded-3xl p-6 shadow-xl">
-                <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="fa-solid fa-trophy text-yellow-400"></i>Live Stats Snapshot</h3>
-                <div class="grid grid-cols-2 gap-3 text-xs">
-                  <div class="rounded-xl p-3 theme-card-soft">
-                    <p class="theme-text-soft">Total XP</p>
-                    <p id="homeXP" class="text-xl font-bold text-cyan-300">0</p>
-                  </div>
-                  <div class="rounded-xl p-3 theme-card-soft">
-                    <p class="theme-text-soft">Best Streak</p>
-                    <p id="homeBestStreak" class="text-xl font-bold text-amber-300">0</p>
-                  </div>
-                  <div class="rounded-xl p-3 theme-card-soft">
-                    <p class="theme-text-soft">Math Problems Solved</p>
-                    <p id="homeMathSolved" class="text-xl font-bold text-emerald-300">0</p>
-                  </div>
-                  <div class="rounded-xl p-3 theme-card-soft">
-                    <p class="theme-text-soft">Stories Completed</p>
-                    <p id="homeStoriesCompleted" class="text-xl font-bold text-pink-300">0</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- MATH -->
-        <section id="route-math" class="route-section hidden">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="md:w-1/3 space-y-4">
-              <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-calculator text-red-400"></i>Math Arena</h2>
-              <p class="text-xs theme-text-soft">Choose a grade, select a mode, and solve as many problems as you can. Earn XP and Brain Coins for each correct answer.</p>
-
-              <div class="space-y-3 theme-card rounded-2xl p-4">
-                <h3 class="text-sm font-semibold mb-2">Grade Level</h3>
-                <select id="mathGrade" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-xs">
-                  <option value="1">Grade 1 – Apples & Counting</option>
-                  <option value="2">Grade 2 – Double Digits & Words</option>
-                  <option value="3">Grade 3 – Times & Sharing</option>
-                  <option value="4">Grade 4 – Long Division & Decimals</option>
-                  <option value="5">Grade 5 – Fractions & PEMDAS</option>
-                  <option value="6">Grade 6 – Algebra & Ratios</option>
-                </select>
-
-                <h3 class="text-sm font-semibold mt-3">Mode</h3>
-                <div class="flex gap-2">
-                  <button id="modeCalm"
-                    class="flex-1 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 text-xs font-semibold">Calm Mode</button>
-                  <button id="modeSprint"
-                    class="flex-1 px-3 py-2 rounded-lg bg-amber-500 text-slate-900 text-xs font-semibold">Beat the Clock</button>
-                </div>
-
-                <div id="sprintTimerBox" class="mt-3 hidden text-xs flex items-center gap-2"><i class="fa-solid fa-stopwatch text-amber-400"></i><span>Time left:</span><span id="sprintTimer" class="font-bold text-amber-300">60s</span></div>
-
-                <button id="startMath"
-                  class="mt-4 w-full px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">Start Challenge</button>
-              </div>
-
-              <div class="theme-card rounded-2xl p-4 text-xs">
-                <h3 class="text-sm font-semibold mb-2">Math Progress</h3>
-                <p>Correct answers: <span id="mathCorrect" class="font-bold text-emerald-300">0</span></p>
-                <p>Incorrect answers: <span id="mathIncorrect" class="font-bold text-rose-300">0</span></p>
-                <p>Current streak: <span id="mathStreak" class="font-bold text-amber-300">0</span></p>
-              </div>
-            </div>
-
-            <div class="md:w-2/3">
-              <div class="theme-card rounded-3xl p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-semibold">Current Problem</h3>
-                  <span id="mathGradeLabel" class="text-xs theme-text-soft">Select a grade to begin</span>
-                </div>
-
-                <div id="mathVisual" class="text-3xl text-center mb-2"></div>
-
-                <div class="text-center">
-                  <p id="mathQuestion" class="text-xl md:text-2xl font-bold mb-3"></p>
-                  <p id="mathWordProblem" class="text-xs theme-text-soft mb-3"></p>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center gap-3">
-                  <input id="mathAnswer" type="text" placeholder="Type your answer here..."
-                    class="flex-1 rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm" />
-                  <button id="submitMath"
-                    class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit</button>
-                </div>
-
-                <p id="mathFeedback" class="text-sm mt-2"></p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- STORY / ELA -->
-        <section id="route-story" class="route-section hidden">
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="md:col-span-1 space-y-4">
-              <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i>Reading Lab (ELA)</h2>
-              <p class="text-xs theme-text-soft">Choose a reading level, read a story citation, then answer multiple-choice questions. All story data is stored in a JSON file for easy maintenance.</p>
-
-              <div class="theme-card rounded-2xl p-4 space-y-3">
-                <h3 class="text-sm font-semibold">Reading Level</h3>
-                <label class="text-xs flex items-center justify-between"><span class="text-yellow-300"><i class="fa-solid fa-face-smile"></i></span><span>Age 5 – Simple & Fun</span></label>
-                <label class="text-xs flex items-center justify-between"><span class="text-cyan-300"><i class="fa-solid fa-dragon"></i></span><span>Middle School – Adventure & Drama</span></label>
-                <label class="text-xs flex items-center justify-between"><span class="text-pink-300"><i class="fa-solid fa-meteor"></i></span><span>High School – Deep Themes & Sci-Fi</span></label>
-
-                <input id="storyComplexity" type="range" min="1" max="3" value="1" class="w-full mt-2" />
-                <p id="storyComplexityLabel" class="text-xs theme-text-soft mt-1">Age 5 – Basic</p>
-
-                <button id="startStory"
-                  class="mt-3 w-full px-4 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold">Load Story & Questions</button>
-              </div>
-
-              <div class="theme-card rounded-2xl p-4 text-xs space-y-2">
-                <h3 class="text-sm font-semibold">Reading Progress</h3>
-                <p>Stories completed: <span id="storyCompletedCount" class="font-bold text-pink-300">0</span></p>
-                <p>Last reward: <span id="storyLastReward" class="font-bold text-emerald-300">0</span> Coins</p>
-              </div>
-            </div>
-
-            <div class="md:col-span-2 space-y-4">
-              <div class="theme-card rounded-3xl p-6 space-y-4">
-                <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fa-solid fa-scroll text-yellow-300"></i>Story Citation</h3>
-                <div id="storyText" class="text-sm md:text-base leading-relaxed space-y-3"></div>
-              </div>
-
-              <div id="storyQuizBox" class="theme-card rounded-3xl p-6 space-y-3 hidden">
-                <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fa-solid fa-question text-emerald-300"></i>Reading Comprehension MCQ</h3>
-                <div id="storyQuizQuestions" class="space-y-4 text-sm"></div>
-                <button id="submitStoryQuiz"
-                  class="mt-2 px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit Answers</button>
-                <p id="storyQuizFeedback" class="text-xs mt-2"></p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SHOP -->
-        <section id="route-shop" class="route-section hidden">
-          <div class="space-y-4">
-            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-gamepad text-amber-300"></i>Game Rewards Zone</h2>
-            <p class="text-xs theme-text-soft">Play short embedded sessions. Each session costs 100 coins and closes automatically when time ends.</p>
-
-            <div class="grid md:grid-cols-3 gap-4">
-              <!-- Car Games -->
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-                <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
-                <h3 class="text-sm font-semibold">Smash Karts</h3>
-                <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
-                  data-url="https://smashkarts.io/" data-cost="130">
-                  Play 3‑Mins (130 Coins)
-                </button>
-              </div>
-
-              <!-- Adventure Games -->
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-                <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png" height="100" width="100" class="rounded-xl">
-                <h3 class="text-sm font-semibold">Adventure Game</h3>
-                <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
-                  data-url="https://vectaria.io/" data-cost="90">
-                  Play 3‑Mins (90 Coins)
-                </button>
-              </div>
-
-              <!-- Subway Surfers Game-->
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-                <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/1c920b9279c2bedec567c1b58129ae8f/subway-surfers-logo.png" height="100" width="100" class="rounded-xl">
-                <h3 class="text-sm font-semibold">Subway Surfers Game</h3>
-                <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
-                  data-url="https://running-games.io/subway-run" data-cost="150">
-                  Play 3‑Mins (150 Coins)
-                </button>
-              </div>
-
-              <!-- Temple Run Game-->
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/TempleRun.jpg" height="100" width="100" class="rounded-xl">
-                <h3 class="text-sm font-semibold">Temple Run Game</h3>
-                <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
-                  data-url="https://temple-run.com/" data-cost="150">
-                  Play 3‑Mins (150 Coins)
-                </button>
-              </div>
-
-              <!-- Fire Boy & Water Girl Game-->
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk7e0y5fGlmD5aNGyyX6AF7P-fJFyg6RS1LiS2Kk6X4WW_qZeyZR4HHkBQfe1AZsU31_mUrqcq2nYH2djKAiBgbchq-YofK0CX8IBT&s=10" height="100" width="100" class="rounded-xl">
-                <h3 class="text-sm font-semibold">Fire Boy & Water Girl Game</h3>
-                <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
-                  data-url="https://www.fireboynwatergirl.com/?p=game&id=1" data-cost="120">
-                  Play 3‑Mins (120 Coins)
-                </button>
-              </div>
-
-              <!-- World Guessr Game-->
-              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-                <img src="https://imgs.crazygames.com/worldguessr_1x1/20241018082521/worldguessr_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
-                <h3 class="text-sm font-semibold">World Guessr Game</h3>
-                <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
-                  data-url="https://www.worldguessr.com/" data-cost="80">
-                  Play 3‑Mins (80 Coins)
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- PROFILE -->
-        <section id="route-profile" class="route-section hidden">
-          <div class="space-y-4">
-            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-id-card text-cyan-300"></i>Profile & Stats</h2>
-            <p class="text-xs theme-text-soft">Review your lifetime stats, unlocked items, and current avatar. All data is stored locally in your browser.</p>
-
-            <div class="grid md:grid-cols-2 gap-4 text-xs">
-              <div class="theme-card rounded-2xl p-4 space-y-2">
-                <h3 class="text-sm font-semibold mb-2">Player Overview</h3>
-                <p>Current Level: <span id="profileLevel" class="font-bold text-cyan-300">1</span></p>
-                <p>Total XP: <span id="profileXP" class="font-bold text-emerald-300">0</span></p>
-                <p>Brain Coins: <span id="profileCoins" class="font-bold text-yellow-300">0</span></p>
-                <p>Best Streak: <span id="profileBestStreak" class="font-bold text-amber-300">0</span></p>
-                <p>Avatar Title: <span id="profileAvatar" class="font-bold text-pink-300">Rookie Explorer</span></p>
-              </div>
-
-              <div class="theme-card rounded-2xl p-4 space-y-2">
-                <h3 class="text-sm font-semibold mb-2">Unlocked Items</h3>
-                <p>Magic Sound FX: <span id="profileSoundMagic" class="font-bold text-slate-200">Locked</span></p>
-              </div>
-            </div>
-
-            <button id="resetProgress"
-              class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">Reset Progress (Local Only)</button>
-          </div>
-        </section>
-
-      </div>
-    </main>
-
-  </div>
-
-  <!-- Game Modal (embedded iframe) -->
-  <div id="gameModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur flex items-center justify-center z-50">
-    <div class="bg-slate-900 rounded-3xl p-4 modal-inner relative w-[80%] h-[80%]">
-      <iframe id="gameFrame" src="" class="w-full h-full rounded-xl border-0"></iframe>
-      <button id="closeGame"
-        class="absolute top-3 right-3 px-3 py-2 bg-rose-500 text-white rounded-lg font-semibold">Close</button>
-      <p id="gameTimer" class="absolute bottom-3 right-3 text-sm text-yellow-300 font-bold"></p>
-    </div>
-  </div>
-
-  <!-- Scripts -->
   <script>
-    /* ---------- Utilities & State ---------- */
-    const defaultState = {
-      level: 1, xp: 0, coins: 10, streak: 0, bestStreak: 0,
-      mathSolved: 0, storiesCompleted: 0,
-      unlocked: { sound_magic: true },
-      avatarTitle: "Rookie Explorer"
-    };
+    // XP & Coins (persisted)
+    let xp = parseInt(localStorage.getItem('xp') || '0');
+    let coins = parseInt(localStorage.getItem('coins') || '0');
+    const xpDisplay = document.getElementById('xpDisplay');
+    const coinDisplay = document.getElementById('coinDisplay');
+    xpDisplay.textContent = xp;
+    coinDisplay.textContent = coins;
 
-    function loadState() {
-      try {
-        const s = localStorage.getItem("brainquest_state");
-        if (s) return JSON.parse(s);
-      } catch (e) { }
-      return { ...defaultState };
+    function addXP(amount) {
+      xp += amount;
+      localStorage.setItem('xp', xp);
+      xpDisplay.textContent = xp;
     }
-    let state = loadState();
-
-    function saveState() {
-      localStorage.setItem("brainquest_state", JSON.stringify(state));
-      updateHUD();
-      updateHomeStats();
+    function addCoins(amount) {
+      coins += amount;
+      localStorage.setItem('coins', coins);
+      coinDisplay.textContent = coins;
     }
 
-    /* ---------- Confetti (2s) ---------- */
-    const confettiCanvas = document.getElementById("confettiCanvas");
-    const ctx = confettiCanvas.getContext("2d");
-    let confettiPieces = [];
-    function resizeCanvas() { confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    function spawnConfetti() {
-      confettiPieces = [];
-      for (let i = 0; i < 80; i++) {
-        confettiPieces.push({ x: Math.random() * confettiCanvas.width, y: Math.random() * confettiCanvas.height - 50, r: Math.random() * 6 + 2, c: `hsl(${Math.random() * 360},80%,60%)`, v: Math.random() * 3 + 2 });
-      }
-      const duration = 2000;
-      const start = performance.now();
-      function frame(t) {
-        const elapsed = t - start;
-        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-        confettiPieces.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = p.c; ctx.fill(); p.y += p.v; });
-        if (elapsed < duration) requestAnimationFrame(frame);
-        else { confettiPieces = []; ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height); }
-      }
-      requestAnimationFrame(frame);
+    // Confetti
+    function launchConfetti() {
+      const duration = 1200;
+      const end = Date.now() + duration;
+      (function frame() {
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
     }
 
-    /* ---------- Theme Toggle (simple) ---------- */
-    const themeToggle = document.getElementById("themeToggle");
-    const themeLabel = document.getElementById("themeLabel");
-    let isLight = false;
-    themeToggle.addEventListener("click", () => {
-      isLight = !isLight;
-      document.body.classList.toggle("theme-light", isLight);
-      document.body.classList.toggle("theme-dark", !isLight);
-      themeLabel.textContent = isLight ? "Dark Mode" : "Light Mode";
-      themeToggle.querySelector(".theme-icon").innerHTML = isLight ? '<i class="fa-solid fa-moon text-slate-700"></i>' : '<i class="fa-solid fa-sun text-yellow-300"></i>';
+    // Sounds
+    const soundCorrect = document.getElementById('soundCorrect');
+    const soundWrong = document.getElementById('soundWrong');
+    const soundTimeUp = document.getElementById('soundTimeUp');
+
+    // Page navigation
+    const pages = ['home', 'math', 'ela', 'games'];
+    function showPage(name) {
+      pages.forEach(p => {
+        document.getElementById('page-' + p).classList.toggle('hidden', p !== name);
+      });
+    }
+    document.querySelectorAll('.page-link').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = btn.dataset.page;
+        if (page) showPage(page);
+      });
     });
+    showPage('home'); // default
 
-    /* ---------- Router ---------- */
-    const routeButtons = document.querySelectorAll(".route-btn");
-    const routeSections = document.querySelectorAll(".route-section");
-    routeButtons.forEach(btn => btn.addEventListener("click", () => showRoute(btn.dataset.route)));
-    function showRoute(route) { routeSections.forEach(sec => sec.classList.toggle("hidden", sec.id !== `route-${route}`)); }
-
-    /* ---------- HUD / Profile (Fixed rendering logic) ---------- */
-    const hudLevel = document.getElementById("hudLevel");
-    const hudXP = document.getElementById("hudXP");
-    const hudCoins = document.getElementById("hudCoins");
-    const hudStreak = document.getElementById("hudStreak");
-    const hudAvatar = document.getElementById("hudAvatar");
-    const storyCompletedCount = document.getElementById("storyCompletedCount");
-    const storyLastReward = document.getElementById("storyLastReward");
-    const profileLevel = document.getElementById("profileLevel");
-    const profileXP = document.getElementById("profileXP");
-    const profileCoins = document.getElementById("profileCoins");
-    const profileBestStreak = document.getElementById("profileBestStreak");
-    const profileAvatar = document.getElementById("profileAvatar");
-    const profileSoundMagic = document.getElementById("profileSoundMagic");
-
-    function updateHUD() {
-      hudLevel.textContent = state.level;
-      hudXP.textContent = state.xp;
-      hudCoins.textContent = state.coins;
-      hudStreak.textContent = state.streak;
-      hudAvatar.textContent = state.avatarTitle;
-      storyCompletedCount.textContent = state.storiesCompleted;
-
-      // Update Profile stats
-      profileLevel.textContent = state.level;
-      profileXP.textContent = state.xp;
-      profileCoins.textContent = state.coins;
-      profileBestStreak.textContent = state.bestStreak;
-      profileAvatar.textContent = state.avatarTitle;
-      profileSoundMagic.textContent = state.unlocked.sound_magic ? "Unlocked" : "Locked";
-    }
-
-    function updateHomeStats() {
-      document.getElementById("homeXP").textContent = state.xp;
-      document.getElementById("homeBestStreak").textContent = state.bestStreak;
-      document.getElementById("homeMathSolved").textContent = state.mathSolved;
-      document.getElementById("homeStoriesCompleted").textContent = state.storiesCompleted;
-    }
-
-    /* ---------- Sounds ---------- */
-    const soundCorrect = document.getElementById("soundCorrect");
-    const soundWrong = document.getElementById("soundWrong");
-
-    /* ---------- Shop: ensure sound enabled by default ---------- */
-    if (!state.unlocked) state.unlocked = { sound_magic: true };
-    state.unlocked.sound_magic = true;
-
-    /* ---------- Reset ---------- */
-    document.getElementById("resetProgress").addEventListener("click", () => {
-      if (confirm("Reset all progress? This only affects local storage.")) { state = { ...defaultState }; saveState(); }
-    });
-
-    /* ---------- Math Logic ---------- */
-    const mathGrade = document.getElementById("mathGrade");
-    const mathGradeLabel = document.getElementById("mathGradeLabel");
-    const mathVisual = document.getElementById("mathVisual");
-    const mathQuestion = document.getElementById("mathQuestion");
-    const mathWordProblem = document.getElementById("mathWordProblem");
-    const mathAnswer = document.getElementById("mathAnswer");
-    const mathFeedback = document.getElementById("mathFeedback");
-    const mathCorrect = document.getElementById("mathCorrect");
-    const mathIncorrect = document.getElementById("mathIncorrect");
-    const mathStreak = document.getElementById("mathStreak");
-    const sprintTimerBox = document.getElementById("sprintTimerBox");
-    const sprintTimer = document.getElementById("sprintTimer");
-    const startMathBtn = document.getElementById("startMath");
-    const submitMathBtn = document.getElementById("submitMath");
-    const modeCalmBtn = document.getElementById("modeCalm");
-    const modeSprintBtn = document.getElementById("modeSprint");
-
-    let mathMode = "calm";
-    let sprintInterval = null;
-    let sprintTimeLeft = 60;
+    // Math logic
+    const mathGradeSelect = document.getElementById('mathGrade');
+    const mathQuestionText = document.getElementById('mathQuestionText');
+    const mathVisual = document.getElementById('mathVisual');
+    const mathSvgContainer = document.getElementById('mathSvgContainer');
+    const mathChoices = document.getElementById('mathChoices');
+    const mathFeedback = document.getElementById('mathFeedback');
     let currentMathAnswer = null;
-    let currentMathMeta = {};
+    let currentGrade = 1;
+    let currentShapeType = null;
 
-    modeCalmBtn.addEventListener("click", () => { mathMode = "calm"; sprintTimerBox.classList.add("hidden"); });
-    modeSprintBtn.addEventListener("click", () => { mathMode = "sprint"; sprintTimerBox.classList.remove("hidden"); });
-    startMathBtn.addEventListener("click", startMathSession);
-    submitMathBtn.addEventListener("click", submitMathAnswer);
-
-    function startMathSession() {
-      mathFeedback.textContent = ""; mathAnswer.value = ""; mathCorrect.textContent = "0"; mathIncorrect.textContent = "0"; mathStreak.textContent = "0";
-      currentMathMeta = { correct: 0, incorrect: 0, streak: 0 };
-      const grade = parseInt(mathGrade.value, 10);
-      mathGradeLabel.textContent = `Grade ${grade} Challenge`;
-      if (mathMode === "sprint") {
-        sprintTimeLeft = 60; sprintTimer.textContent = sprintTimeLeft + "s";
-        if (sprintInterval) clearInterval(sprintInterval);
-        sprintInterval = setInterval(() => { sprintTimeLeft--; sprintTimer.textContent = sprintTimeLeft + "s"; if (sprintTimeLeft <= 0) { clearInterval(sprintInterval); mathFeedback.textContent = "Time's up! Great effort."; mathFeedback.className = "text-xs text-amber-300"; } }, 1000);
-      } else if (sprintInterval) clearInterval(sprintInterval);
-      generateMathProblem();
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    function generateMathProblem() {
-      const grade = parseInt(mathGrade.value, 10);
-      let question = "", answer = null, wordProblem = "", visual = "";
+    function generateMathQuestion(grade) {
+      currentGrade = grade;
+      let question = '';
+      let answer = 0;
+      let visual = '';
+      currentShapeType = null;
+      mathSvgContainer.innerHTML = '';
+
       if (grade === 1) {
-        let a = randInt(1, 10), b = randInt(1, 10);
-        if (b > a) [a, b] = [b, a];
-        const op = Math.random() < 0.5 ? "+" : "-";
-        question = `${a} ${op} ${b} = ?`;
-        answer = op === "+" ? a + b : a - b;
-        visual = "🍎".repeat(Math.min(a, 10)) + " " + "🍎".repeat(Math.min(b, 10));
-        wordProblem = `You have ${a} apples and ${op === "+" ? "get" : "lose"} ${b}. How many apples now?`;
+        // Grade 1: counting & visual addition with apples
+        const a = randomInt(1, 5);
+        const b = randomInt(1, 5);
+        answer = a + b;
+        question = `Count the apples and add them together. How many apples are there in total?`;
+        visual =
+          '🍎 '.repeat(a) +
+          '   +   ' +
+          '🍎 '.repeat(b);
       } else if (grade === 2) {
-        let a = randInt(10, 99), b = randInt(10, 99);
-        if (b > a) [a, b] = [b, a];
-        const op = Math.random() < 0.5 ? "+" : "-";
-        question = `${a} ${op} ${b} = ?`;
-        answer = op === "+" ? a + b : a - b;
-        wordProblem = `A classroom has ${a} books. They ${op === "+" ? "receive" : "lose"} ${b}. Total books?`;
+        // Grade 2: patterns & missing numbers with apples
+        if (Math.random() < 0.5) {
+          // Number pattern
+          const start = randomInt(1, 5);
+          const step = randomInt(1, 3);
+          const seq = [start, start + step, start + 2 * step, start + 3 * step];
+          answer = start + 4 * step;
+          question = `Identify the pattern and extend it. What number comes next?`;
+          visual = seq.join('  ') + '  ...';
+        } else {
+          // Missing number equation with apples
+          const total = randomInt(5, 12);
+          const known = randomInt(1, total - 1);
+          const missing = total - known;
+          answer = missing;
+          question = `Find the missing number: ${known} + ? = ${total}`;
+          visual =
+            '🍎 '.repeat(known) +
+            '   +   ' +
+            '?   =   ' +
+            '🍎 '.repeat(total);
+        }
       } else if (grade === 3) {
-        const type = Math.random() < 0.5 ? "mul" : "div";
-        const a = randInt(1, 10), b = randInt(1, 10);
-        if (type === "mul") { question = `${a} × ${b} = ?`; answer = a * b; wordProblem = `There are ${a} bags with ${b} marbles each. Total marbles?`; }
-        else { const product = a * b; question = `${product} ÷ ${a} = ?`; answer = b; wordProblem = `You share ${product} candies among ${a} friends. Each gets?`; }
-        visual = "🍰".repeat(Math.min(a, 10));
+        // Grade 3: basic multiplication & division
+        if (Math.random() < 0.5) {
+          const a = randomInt(2, 10);
+          const b = randomInt(2, 10);
+          answer = a * b;
+          question = `What is ${a} × ${b}?`;
+        } else {
+          const divisor = randomInt(2, 10);
+          const quotient = randomInt(2, 10);
+          const dividend = divisor * quotient;
+          answer = quotient;
+          question = `What is ${dividend} ÷ ${divisor}?`;
+        }
       } else if (grade === 4) {
-        const type = Math.random() < 0.5 ? "longdiv" : "decimal";
-        if (type === "longdiv") { const divisor = randInt(2, 9), quotient = randInt(2, 9), dividend = divisor * quotient; question = `${dividend} ÷ ${divisor} = ?`; answer = quotient; wordProblem = `Divide ${dividend} students into groups of ${divisor}. Groups?`; }
-        else { const a = randInt(10, 99) / 10, b = randInt(10, 99) / 10, op = Math.random() < 0.5 ? "+" : "-"; question = `${a.toFixed(1)} ${op} ${b.toFixed(1)} = ?`; answer = parseFloat((op === "+" ? a + b : a - b).toFixed(1)); wordProblem = `You run ${a.toFixed(1)} km and ${b.toFixed(1)} km. Total?`; }
+        // Grade 4: properties & solving for x
+        if (Math.random() < 0.5) {
+          const x = randomInt(1, 10);
+          const a = randomInt(1, 5);
+          const b = randomInt(1, 10);
+          const c = a * x + b;
+          answer = x;
+          question = `Solve for x: ${a}x + ${b} = ${c}`;
+        } else {
+          const a = randomInt(2, 10);
+          const b = randomInt(2, 10);
+          const c = randomInt(2, 10);
+          answer = a * (b + c);
+          question = `Use the distributive property: ${a}(${b} + ${c}) = ?`;
+        }
       } else if (grade === 5) {
-        const type = Math.random() < 0.5 ? "fraction" : "pemdas";
-        if (type === "fraction") { const denom = randInt(2, 9), n1 = randInt(1, denom - 1), n2 = randInt(1, denom - 1); question = `${n1}/${denom} + ${n2}/${denom} = ?`; answer = `${n1 + n2}/${denom}`; wordProblem = `You drink ${n1}/${denom} of juice then ${n2}/${denom}. Total?`; }
-        else { const a = randInt(1, 9), b = randInt(1, 9), c = randInt(1, 9); question = `${a} + ${b} × ${c} = ?`; answer = a + b * c; wordProblem = `Use PEMDAS to solve.`; }
+        // Grade 5: order of operations & equations
+        if (Math.random() < 0.5) {
+          const a = randomInt(1, 5);
+          const b = randomInt(1, 5);
+          const c = randomInt(1, 5);
+          // Expression: a + b^2 × c
+          answer = a + Math.pow(b, 2) * c;
+          question = `Evaluate: ${a} + ${b}<sup>2</sup> × ${c}`;
+        } else {
+          const x = randomInt(1, 10);
+          const a = randomInt(1, 5);
+          const b = randomInt(1, 10);
+          const c = a * x + b;
+          answer = x;
+          question = `Solve the equation: ${a}x + ${b} = ${c}`;
+        }
       } else if (grade === 6) {
-        const type = randInt(1, 3);
-        if (type === 1) { const x = randInt(-10, 10), a = randInt(1, 10), b = randInt(-10, 10), y = a * x + b; question = `${a}x + ${b} = ${y}. Find x.`; answer = x; wordProblem = `Solve for x.`; }
-        else if (type === 2) { const a = randInt(-10, 10), b = randInt(-10, 10); question = `${a} + (${b}) = ?`; answer = a + b; wordProblem = `Add integers carefully.`; }
-        else { const a = randInt(2, 10), b = randInt(2, 10), gcd = greatestCommonDivisor(a, b); question = `Simplify ${a}:${b}`; answer = `${a / gcd}:${b / gcd}`; wordProblem = `Simplify the ratio.`; }
+        // Grade 6: geometry & area (MCQ, SVG shapes, rounded to nearest tenth)
+        const shapeTypes = ['circle', 'square', 'rectangle', 'rhombus', 'triangle'];
+        const shape = shapeTypes[randomInt(0, shapeTypes.length - 1)];
+        currentShapeType = shape;
+
+        let formulaText = '';
+        let displayText = '';
+        let correctArea = 0;
+
+        if (shape === 'circle') {
+          const r = randomInt(2, 10);
+          correctArea = 3.14 * r * r;
+          displayText = `Find the area of the circle with radius ${r}. Round to the nearest tenth.`;
+          drawCircleSvg();
+        } else if (shape === 'square') {
+          const s = randomInt(2, 15);
+          correctArea = s * s;
+          displayText = `Find the area of the square with side length ${s}. Round to the nearest tenth.`;
+          drawSquareSvg();
+        } else if (shape === 'rectangle') {
+          const l = randomInt(3, 20);
+          const w = randomInt(2, 15);
+          correctArea = l * w;
+          displayText = `Find the area of the rectangle with length ${l} and width ${w}. Round to the nearest tenth.`;
+          drawRectangleSvg();
+        } else if (shape === 'rhombus') {
+          const d1 = randomInt(4, 15);
+          const d2 = randomInt(4, 15);
+          correctArea = (d1 * d2) / 2;
+          displayText = `Find the area of the rhombus with diagonals ${d1} and ${d2}. Round to the nearest tenth.`;
+          drawRhombusSvg();
+        } else if (shape === 'triangle') {
+          const b = randomInt(4, 15);
+          const h = randomInt(4, 15);
+          correctArea = 0.5 * b * h;
+          displayText = `Find the area of the triangle with base ${b} and height ${h}. Round to the nearest tenth.`;
+          drawTriangleSvg();
+        }
+
+        answer = parseFloat(correctArea.toFixed(1));
+        question = displayText;
       }
+
       currentMathAnswer = answer;
-      mathQuestion.textContent = question;
-      mathWordProblem.textContent = wordProblem;
+      mathQuestionText.innerHTML = question;
       mathVisual.textContent = visual;
-    }
+      mathFeedback.textContent = '';
+      mathChoices.innerHTML = '';
 
-    function submitMathAnswer() {
-      if (currentMathAnswer === null) return;
-      const raw = mathAnswer.value.trim();
-      if (!raw) return;
-      let correct = false;
-      // Handle floating point comparisons for decimal answers
-      if (typeof currentMathAnswer === "number") { 
-          const userVal = parseFloat(raw); 
-          correct = Math.abs(userVal - currentMathAnswer) < 0.0001; 
-      } else correct = raw === String(currentMathAnswer);
-
-      if (correct) {
-        if (state.unlocked.sound_magic) { soundCorrect.currentTime = 0; soundCorrect.play(); }
-        spawnConfetti();
-        currentMathMeta.correct++; currentMathMeta.streak++;
-        mathCorrect.textContent = currentMathMeta.correct; mathStreak.textContent = currentMathMeta.streak;
-        mathFeedback.textContent = "Correct! +10 XP, +5 Coins"; mathFeedback.className = "text-sm text-emerald-300 bounce";
-        addXP(10); addCoins(5); state.mathSolved++; incrementStreak(); saveState();
-        mathAnswer.value = ""; generateMathProblem();
-      } else {
-        if (state.unlocked.sound_magic) { soundWrong.currentTime = 0; soundWrong.play(); }
-        currentMathMeta.incorrect++; currentMathMeta.streak = 0;
-        mathIncorrect.textContent = currentMathMeta.incorrect; mathStreak.textContent = currentMathMeta.streak;
-        mathFeedback.textContent = "Incorrect. Try again!"; mathFeedback.className = "text-sm text-rose-300 wobble";
-        resetStreak(); saveState();
+      // Build choices (MCQ)
+      const choices = [answer];
+      while (choices.length < 4) {
+        let delta = (currentGrade === 6) ? (Math.random() * 4 - 2) : randomInt(-3, 3);
+        if (delta === 0) continue;
+        let candidate = (currentGrade === 6)
+          ? parseFloat((answer + delta).toFixed(1))
+          : answer + delta;
+        if (!choices.includes(candidate)) choices.push(candidate);
       }
-    }
+      choices.sort(() => Math.random() - 0.5);
 
-    /* ---------- Helpers ---------- */
-    function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-    function greatestCommonDivisor(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { const t = b; b = a % b; a = t; } return a; }
-
-    /* ---------- XP / Coins / Streak helpers ---------- */
-    function addXP(amount) { state.xp += amount; state.level = Math.floor(state.xp / 100) + 1; updateAvatarTitle(); saveState(); }
-    function addCoins(amount) { state.coins += amount; saveState(); }
-    function incrementStreak() { state.streak++; if (state.streak > state.bestStreak) state.bestStreak = state.streak; saveState(); }
-    function resetStreak() { state.streak = 0; saveState(); }
-    function updateAvatarTitle() { if (state.level >= 10) state.avatarTitle = "Galactic Scholar"; else if (state.level >= 7) state.avatarTitle = "Quantum Thinker"; else if (state.level >= 4) state.avatarTitle = "Curious Voyager"; else state.avatarTitle = "Rookie Explorer"; }
-
-    /* ---------- ELA (JSON load) ---------- */
-    let elaData = [];
-    fetch("ela_data.json").then(r => r.json()).then(d => { elaData = d.stories || []; }).catch(() => { elaData = []; });
-
-    const storyComplexity = document.getElementById("storyComplexity");
-    const storyComplexityLabel = document.getElementById("storyComplexityLabel");
-    const startStoryBtn = document.getElementById("startStory");
-    const storyText = document.getElementById("storyText");
-    const storyQuizBox = document.getElementById("storyQuizBox");
-    const storyQuizQuestions = document.getElementById("storyQuizQuestions");
-    const submitStoryQuizBtn = document.getElementById("submitStoryQuiz");
-    const storyQuizFeedback = document.getElementById("storyQuizFeedback");
-    let currentElaStory = null;
-
-    storyComplexity.addEventListener("input", () => {
-      const v = parseInt(storyComplexity.value, 10);
-      storyComplexityLabel.textContent = v === 1 ? "Age 5 – Basic" : v === 2 ? "Middle School – Adventure" : "High School – Complex Sci-Fi";
-    });
-
-    startStoryBtn.addEventListener("click", () => {
-      storyText.innerHTML = ""; storyQuizQuestions.innerHTML = ""; storyQuizFeedback.textContent = ""; storyQuizBox.classList.add("hidden");
-      const level = parseInt(storyComplexity.value, 10);
-      const candidates = elaData.filter(s => s.level === level);
-      if (!candidates.length) { storyText.innerHTML = "<p class='text-sm text-rose-300'>No stories found for this level in JSON file.</p>"; return; }
-      currentElaStory = candidates[Math.floor(Math.random() * candidates.length)];
-      renderElaCitation(); renderElaQuiz();
-    });
-
-    function renderElaCitation() {
-      storyText.innerHTML = "";
-      currentElaStory.citation.forEach(p => { const el = document.createElement("p"); el.textContent = p; storyText.appendChild(el); });
-    }
-
-    function renderElaQuiz() {
-      storyQuizBox.classList.remove("hidden"); storyQuizQuestions.innerHTML = "";
-      currentElaStory.questions.forEach((qObj, idx) => {
-        const wrapper = document.createElement("div"); wrapper.className = "space-y-1";
-        const q = document.createElement("p"); q.textContent = `${idx + 1}. ${qObj.question}`; wrapper.appendChild(q);
-        qObj.choices.forEach((choice, cIdx) => {
-          const label = document.createElement("label"); label.className = "flex items-center gap-2 text-xs";
-          const input = document.createElement("input"); input.type = "radio"; input.name = `ela_q_${idx}`; input.value = cIdx;
-          label.appendChild(input); const span = document.createElement("span"); span.textContent = choice; label.appendChild(span);
-          wrapper.appendChild(label);
-        });
-        storyQuizQuestions.appendChild(wrapper);
-      });
-    }
-
-    submitStoryQuizBtn.addEventListener("click", () => {
-      if (!currentElaStory) return;
-      let correctCount = 0;
-      currentElaStory.questions.forEach((qObj, idx) => {
-        const selected = document.querySelector(`input[name="ela_q_${idx}"]:checked`);
-        if (!selected) return;
-        const chosenIndex = parseInt(selected.value, 10);
-        if (chosenIndex === qObj.correctIndex) correctCount++;
-      });
-      const total = currentElaStory.questions.length;
-      const rewardCoins = correctCount * 20;
-      if (correctCount === total) {
-        storyQuizFeedback.textContent = `Perfect! You answered all correctly. +${rewardCoins} Coins, +30 XP.`; storyQuizFeedback.className = "text-xs text-emerald-300";
-        addCoins(rewardCoins); addXP(30); spawnConfetti();
-      } else if (correctCount > 0) {
-        storyQuizFeedback.textContent = `Nice job! You got ${correctCount}/${total}. +${rewardCoins} Coins, +15 XP.`; storyQuizFeedback.className = "text-xs text-cyan-300";
-        addCoins(rewardCoins); addXP(15);
-      } else {
-        storyQuizFeedback.textContent = `Keep practicing! Try reading carefully next time.`; storyQuizFeedback.className = "text-xs text-rose-300";
-      }
-      state.storiesCompleted++; incrementStreak(); storyLastReward.textContent = rewardCoins; saveState();
-    });
-
-    /* ---------- Game purchase + embedded modal logic ---------- */
-    const gameModal = document.getElementById("gameModal");
-    const gameFrame = document.getElementById("gameFrame");
-    const closeGame = document.getElementById("closeGame");
-    const gameTimer = document.getElementById("gameTimer");
-    let gameInterval = null;
-
-    // Single handler: deduct coins, open modal, start timer
-    document.querySelectorAll(".open-game").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const url = btn.dataset.url;
-        const cost = parseInt(btn.dataset.cost, 10);
-        // NOTE: The original code assumed a time limit was passed in data-time, but it wasn't explicitly set on the buttons. We keep this structure as is, assuming external games handle their own limits.
-        const timeLimit = parseInt(btn.dataset.time) || 180; // Default to 180s if no time is provided
-
-        if (state.coins < cost) { alert("Not enough Brain Coins!"); return; }
-
-        // Deduct once and save
-        state.coins -= cost;
-        saveState();
-
-        // Open embedded modal
-        gameFrame.src = url;
-        gameModal.classList.remove("hidden");
-
-        let timeLeft = timeLimit;
-        gameTimer.textContent = `Time Left: ${timeLeft}s`;
-
-        if (gameInterval) clearInterval(gameInterval);
-        gameInterval = setInterval(() => {
-          timeLeft--;
-          gameTimer.textContent = `Time Left: ${timeLeft}s`;
-          if (timeLeft <= 0) {
-            clearInterval(gameInterval);
-            gameFrame.src = "";
-            gameTimer.textContent = "Time’s up!";
-            if (state.unlocked.sound_magic) { soundCorrect.currentTime = 0; soundCorrect.play(); }
-            setTimeout(() => gameModal.classList.add("hidden"), 1200);
+      choices.forEach((c) => {
+        const btn = document.createElement('button');
+        btn.textContent = c;
+        btn.className =
+          'px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-sm font-semibold';
+        btn.addEventListener('click', () => {
+          if (c === currentMathAnswer) {
+            mathFeedback.textContent = 'Correct! +10 ' +
+              'XP and +' +
+              '10 coins.';
+            mathFeedback.className = 'text-sm text-emerald-400';
+            soundCorrect.currentTime = 0;
+            soundCorrect.play();
+            addCoins(10);
+            addXP(10);
+            launchConfetti();
+          } else {
+            let feedbackText = 'Oops, try again!';
+            if (currentGrade === 6 && currentShapeType) {
+              if (currentShapeType === 'circle') {
+                feedbackText += ' Area of a circle: A = πr².';
+              } else if (currentShapeType === 'square') {
+                feedbackText += ' Area of a square: A = s².';
+              } else if (currentShapeType === 'rectangle') {
+                feedbackText += ' Area of a rectangle: A = l × w.';
+              } else if (currentShapeType === 'rhombus') {
+                feedbackText += ' Area of a rhombus: A = (d₁ × d₂) / 2.';
+              } else if (currentShapeType === 'triangle') {
+                feedbackText += ' Area of a triangle: A = ½ × b × h.';
+              }
+            }
+            mathFeedback.textContent = feedbackText;
+            mathFeedback.className = 'text-sm text-pink-400';
+            soundWrong.currentTime = 0;
+            soundWrong.play();
           }
-        }, 1000);
+        });
+        mathChoices.appendChild(btn);
+      });
+    }
+
+    // SVG drawing helpers for Grade 6
+    function drawCircleSvg() {
+      mathSvgContainer.innerHTML = `
+        <svg width="160" height="160">
+          <circle cx="80" cy="80" r="60" fill="none" stroke="white" stroke-width="4" />
+        </svg>
+      `;
+    }
+    function drawSquareSvg() {
+      mathSvgContainer.innerHTML = `
+        <svg width="160" height="160">
+          <rect x="30" y="30" width="100" height="100" fill="none" stroke="white" stroke-width="4" />
+        </svg>
+      `;
+    }
+    function drawRectangleSvg() {
+      mathSvgContainer.innerHTML = `
+        <svg width="200" height="140">
+          <rect x="20" y="30" width="160" height="80" fill="none" stroke="white" stroke-width="4" />
+        </svg>
+      `;
+    }
+    function drawRhombusSvg() {
+      mathSvgContainer.innerHTML = `
+        <svg width="200" height="160">
+          <polygon points="100,20 170,80 100,140 30,80" fill="none" stroke="white" stroke-width="4" />
+        </svg>
+      `;
+    }
+    function drawTriangleSvg() {
+      mathSvgContainer.innerHTML = `
+        <svg width="200" height="160">
+          <polygon points="40,140 160,140 100,40" fill="none" stroke="white" stroke-width="4" />
+        </svg>
+      `;
+    }
+
+    document.getElementById('newMathQuestion').addEventListener('click', () => {
+      const grade = parseInt(mathGradeSelect.value, 10);
+      generateMathQuestion(grade);
+    });
+    generateMathQuestion(parseInt(mathGradeSelect.value, 10));
+
+    // ELA logic (JSON)
+    const elaLevelSelect = document.getElementById('elaLevel');
+    const elaCitation = document.getElementById('elaCitation');
+    const elaText = document.getElementById('elaText');
+    const elaQuestionsDiv = document.getElementById('elaQuestions');
+    const elaFeedback = document.getElementById('elaFeedback');
+    let elaData = null;
+
+    async function loadElaData() {
+      if (!elaData) {
+        try {
+          const res = await fetch('ela_data.json');
+          elaData = await res.json();
+        } catch (e) {
+          elaCitation.textContent = 'Error loading ELA data.';
+          soundTimeUp.currentTime = 0;
+          soundTimeUp.play();
+          return;
+        }
+      }
+
+      const level = elaLevelSelect.value;
+      const entry = elaData[level];
+      if (!entry) return;
+
+      elaCitation.textContent = entry.citation;
+      elaText.textContent = entry.text;
+      elaQuestionsDiv.innerHTML = '';
+      elaFeedback.textContent = '';
+
+      entry.questions.forEach((q, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'bg-slate-900/70 border border-slate-700 rounded-xl p-3 space-y-2';
+
+        const qText = document.createElement('p');
+        qText.className = 'text-sm font-semibold';
+        qText.textContent = `Q${idx + 1}. ${q.question}`;
+        wrapper.appendChild(qText);
+
+        const choicesDiv = document.createElement('div');
+        choicesDiv.className = 'space-y-1';
+
+        q.choices.forEach((choice, cIdx) => {
+          const label = document.createElement('label');
+          label.className = 'flex items-center gap-2 text-sm';
+
+          const input = document.createElement('input');
+          input.type = 'radio';
+          input.name = `ela-q-${idx}`;
+          input.value = cIdx;
+          input.className = 'accent-cyan-400';
+
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(choice));
+          choicesDiv.appendChild(label);
+        });
+
+        wrapper.appendChild(choicesDiv);
+        elaQuestionsDiv.appendChild(wrapper);
+      });
+
+      const submitBtn = document.createElement('button');
+      submitBtn.textContent = 'Submit Answers';
+      submitBtn.className =
+        'mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold';
+      submitBtn.addEventListener('click', () => {
+        let correctCount = 0;
+        entry.questions.forEach((q, idx) => {
+          const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
+          if (selected && parseInt(selected.value, 10) === q.correctIndex) {
+            correctCount++;
+          }
+        });
+        if (correctCount === entry.questions.length) {
+          elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +20 XP and +20 coins.`;
+          elaFeedback.className = 'text-sm text-emerald-400';
+          soundCorrect.currentTime = 0;
+          soundCorrect.play();
+          addCoins(20);
+          addXP(20);
+          launchConfetti();
+        } else {
+          elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
+          elaFeedback.className = 'text-sm text-pink-400';
+          soundWrong.currentTime = 0;
+          soundWrong.play();
+        }
+      });
+
+      elaQuestionsDiv.appendChild(submitBtn);
+    }
+
+    document.getElementById('loadEla').addEventListener('click', loadElaData);
+
+    // Games logic with iframe + timer
+    const gameContainer = document.getElementById('gameContainer');
+    const gameFrame = document.getElementById('gameFrame');
+    const gameTimerDisplay = document.getElementById('gameTimer');
+    let gameInterval = null;
+    let gameTimeLeft = 0;
+
+    function startGameSession(url) {
+      gameFrame.src = url;
+      gameContainer.classList.remove('hidden');
+      gameTimeLeft = 180; // 3 minutes
+      updateGameTimerDisplay();
+      if (gameInterval) clearInterval(gameInterval);
+      gameInterval = setInterval(() => {
+        gameTimeLeft--;
+        updateGameTimerDisplay();
+        if (gameTimeLeft <= 0) {
+          clearInterval(gameInterval);
+          gameInterval = null;
+          endGameSession();
+        }
+      }, 1000);
+    }
+
+    function updateGameTimerDisplay() {
+      const minutes = String(Math.floor(gameTimeLeft / 60)).padStart(2, '0');
+      const seconds = String(gameTimeLeft % 60).padStart(2, '0');
+      gameTimerDisplay.textContent = `${minutes}:${seconds}`;
+    }
+
+    function endGameSession() {
+      gameFrame.src = '';
+      gameContainer.classList.add('hidden');
+      soundTimeUp.currentTime = 0;
+      soundTimeUp.play();
+      alert('Time is up! Your 3‑minute game session has ended.');
+    }
+
+    document.querySelectorAll('.open-game').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cost = parseInt(btn.dataset.cost, 10);
+        const url = btn.dataset.url;
+        if (coins >= cost) {
+          coins -= cost;
+          localStorage.setItem('coins', coins);
+          coinDisplay.textContent = coins;
+          startGameSession(url);
+        } else {
+          alert(`You need ${cost} coins to play this game. Keep learning!`);
+          soundTimeUp.currentTime = 0;
+          soundTimeUp.play();
+        }
       });
     });
-
-    closeGame.addEventListener("click", () => {
-      if (gameInterval) clearInterval(gameInterval);
-      gameFrame.src = "";
-      gameModal.classList.add("hidden");
-    });
-
-    /* ---------- Initialization ---------- */
-    updateAvatarTitle();
-    updateHUD();
-    updateHomeStats();
-    showRoute("home");
-
-    /* ---------- Expose some functions for debugging (optional) ---------- */
-    window._state = state;
   </script>
 </body>
 </html>
