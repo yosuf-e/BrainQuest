@@ -642,11 +642,12 @@ function loadElaData() {
   }
 
   const level = elaLevelSelect.value;
-  const entry = elaData[level];
-  if (!entry) {
+  const levelArray = elaData[level];
+  if (!levelArray || levelArray.length === 0) {
     elaCitation.textContent = "No data found for this level.";
     return;
   }
+  const entry = levelArray[Math.floor(Math.random() * levelArray.length)];
 
   elaCitation.textContent = entry.citation;
   elaText.textContent = entry.text;
