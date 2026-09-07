@@ -49,6 +49,7 @@
 </head>
 <body class="minecraft-sky-full text-slate-100 min-h-screen">
 
+
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
   <button><img src="https://github.com/yosuf-e/BrainQuest/blob/main/BrainQuest%20Logo.png?raw=true"
@@ -301,11 +302,24 @@
   <audio id="soundTimeUp">
     <source src="https://cdn.pixabay.com/audio/2024/10/10/audio_7c1f7894bd.mp3" type="audio/ogg">
   </audio>
-  <audio id="BackgroundMusic">
-    <source src="https://cdn.pixabay.com/audio/2024/10/10/audio_7c1f7894bd.mp3" type="audio/ogg">
+
+  <audio id="bgMusic" 
+  src="https://cdn.pixabay.com/audio/2025/12/21/audio_3831917328.mp3" loop>
   </audio>
 
   <script>
+    // BG Music
+    window.addEventListener('DOMContentLoaded', () => {
+  const bgMusic = document.getElementById('bgMusic');
+  bgMusic.volume = 0.015; // 1.5% volume
+  bgMusic.play().catch(() => {
+    // Browser blocked autoplay — user must interact first
+    document.body.addEventListener('click', () => {
+      bgMusic.play();
+    }, { once: true });
+  });
+});
+
     // XP & Coins (persisted)
     let xp = parseInt(localStorage.getItem('xp') || '0');
     let coins = parseInt(localStorage.getItem('coins') || '0');
