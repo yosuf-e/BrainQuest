@@ -1,227 +1,226 @@
 window.ELA_DATA = {
   // ==========================================================
-  // ELEMENTARY LEVEL (20 READING SETS)
+  // ELEMENTARY LEVEL (20 READING SETS) - SIMPLIFIED FANTASY
   // ==========================================================
   elementary: [
     {
       id: "elem_01",
-      citation: "Excerpt adapted from a children’s nature article, 2024.",
-      text: "In the morning, the sun rises and gently warms the earth. Birds begin to sing, and small animals wake up to search for food. The sky slowly changes from dark blue to bright orange and yellow. Many children like to watch the sunrise because it makes them feel calm and happy.",
+      citation: "From *Barnaby the Dragon*, a children's storybook, 2024.",
+      text: "Barnaby was a tiny green dragon. Most dragons liked to breathe big hot fire, but Barnaby loved to breathe soft pink bubbles! His best friend was a little bird named Pippin. Every afternoon, Barnaby blew bubbles for Pippin to pop with his yellow beak.",
       questions: [
         {
-          question: "What happens when the sun rises in the morning?",
+          question: "What color was Barnaby the dragon?",
           choices: [
-            "The sky becomes bright and colorful.",
-            "The birds go to sleep.",
-            "The animals hide underground.",
-            "The children go to bed."
+            "Green",
+            "Blue",
+            "Purple",
+            "Black"
           ],
           correctIndex: 0
         },
         {
-          question: "Why do many children like to watch the sunrise?",
+          question: "What did Barnaby like to breathe out?",
           choices: [
-            "It makes them feel calm and happy.",
-            "It is very loud and scary.",
-            "It helps them run faster.",
-            "It makes the night longer."
-          ],
-          correctIndex: 0
-        },
-        {
-          question: "Which animals are mentioned in the passage?",
-          choices: [
-            "Small animals and birds.",
-            "Whales and sharks.",
-            "Lions and tigers.",
-            "Only insects."
-          ],
-          correctIndex: 0
-        }
-      ]
-    },
-    {
-      id: "elem_02",
-      citation: "Excerpt adapted from *Our Ocean Friends*, 2023.",
-      text: "Sea turtles spend most of their lives swimming in the ocean. When female sea turtles are ready to lay eggs, they crawl onto sandy beaches at night. They dig a quiet nest in the dry sand and carefully cover their eggs before returning to the water. Weeks later, tiny baby turtles hatch and race back to the ocean.",
-      questions: [
-        {
-          question: "Where do female sea turtles lay their eggs?",
-          choices: [
-            "High up in leafy trees.",
-            "In nests dug in dry beach sand.",
-            "Under big river rocks.",
-            "Inside floating icebergs."
+            "Hot fire",
+            "Soft pink bubbles",
+            "Ice cubes",
+            "Cold water"
           ],
           correctIndex: 1
         },
         {
-          question: "When do female sea turtles usually come onto the beach?",
+          question: "Who was Barnaby's best friend?",
           choices: [
-            "At night.",
-            "At noon.",
-            "During thunderstorm warnings.",
-            "Only during winter snows."
-          ],
-          correctIndex: 0
-        },
-        {
-          question: "What do baby sea turtles do right after they hatch?",
-          choices: [
-            "They stay on the beach forever.",
-            "They race back to the ocean.",
-            "They look for bird nests.",
-            "They dig deeper underground."
-          ],
-          correctIndex: 1
-        }
-      ]
-    },
-
-    {
-      id: "elem_03",
-      citation: "Excerpt adapted from *Busy Honeybees*, 2022.",
-      text: "Honeybees are very hard workers that live together in large hives. They fly from flower to flower gathering sweet nectar and colorful pollen. As they visit flowers, they help plants grow new seeds and fruits. Back inside the hive, bees turn nectar into sweet honey that feeds their colony.",
-      questions: [
-        {
-          question: "What do honeybees gather from flowers?",
-          choices: [
-            "Water and tree bark.",
-            "Sweet nectar and pollen.",
-            "Small green pebbles.",
-            "Leaves and dry twigs."
-          ],
-          correctIndex: 1
-        },
-        {
-          question: "How do bees help plants?",
-          choices: [
-            "They help plants grow new seeds and fruits.",
-            "They pull up the plant roots.",
-            "They cover plants with sand.",
-            "They keep plants in dark places."
-          ],
-          correctIndex: 0
-        },
-        {
-          question: "What is honey made from?",
-          choices: [
-            "Ocean water.",
-            "Plant seeds.",
-            "Nectar gathered from flowers.",
-            "Rain drops."
+            "A dog",
+            "A cat",
+            "Pippin the little bird",
+            "A frog"
           ],
           correctIndex: 2
         }
       ]
     },
     {
-      id: "elem_04",
-      citation: "Excerpt adapted from *A Day at the Local Library*, 2024.",
-      text: "The public library is a cozy community place where anyone can borrow books, movies, and games. Librarian Mrs. Lee loves helping children find exciting mystery stories and science guides. Visitors must remember to speak quietly so that everyone can read and study without interruption.",
+      id: "elem_02",
+      citation: "From *The Talking Tree*, 2023.",
+      text: "High on a green hill stood Oakley, a giant oak tree that could talk! Oakley loved to tell silly jokes to the squirrels. Whenever a squirrel laughed, Oakley shook his branches and dropped sweet acorns onto the grass.",
       questions: [
         {
-          question: "What can people do at the library?",
+          question: "What could Oakley the tree do?",
           choices: [
-            "Borrow books, movies, and games.",
-            "Buy groceries for dinner.",
-            "Play loud drums.",
-            "Adopt pet puppies."
+            "Talk",
+            "Fly",
+            "Swim",
+            "Sleep all day"
           ],
           correctIndex: 0
         },
         {
-          question: "Why should visitors speak quietly in the library?",
+          question: "Who did Oakley tell jokes to?",
           choices: [
-            "So everyone can read and study without interruption.",
-            "Because the lights will turn off.",
-            "So the books do not fall down.",
-            "Because librarian Mrs. Lee is sleeping."
+            "Bears",
+            "Squirrels",
+            "Fish",
+            "Ducks"
           ],
-          correctIndex: 0
+          correctIndex: 1
         },
         {
-          question: "What kind of books does Mrs. Lee help children find?",
+          question: "What dropped when Oakley shook his branches?",
           choices: [
-            "Mystery stories and science guides.",
-            "Cookbooks only.",
-            "Blank notebooks.",
-            "Dictionary entries only."
+            "Sweet acorns",
+            "Red apples",
+            "Shiny coins",
+            "Snowballs"
           ],
           correctIndex: 0
         }
       ]
     },
     {
-      id: "elem_05",
-      citation: "Excerpt adapted from *Understanding Rainstorms*, 2023.",
-      text: "Clouds are made of millions of tiny drops of water floating together in the sky. When clouds become too heavy with water, the water drops fall to the ground as rain. Rain waters trees and crops, fills lakes, and gives fresh drinking water to living creatures.",
+      id: "elem_03",
+      citation: "From *Pip's Flying Adventure*, 2022.",
+      text: "Pip was a happy little pig who wished he could fly. One sunny day, he ate a golden acorn from a magic garden. Suddenly, two tiny fluffy white wings grew on his back! Pip flew up into the blue sky and buzzed around like a bumblebee.",
       questions: [
         {
-          question: "What are clouds made of?",
+          question: "What did Pip wish he could do?",
           choices: [
-            "Soft cotton balls.",
-            "Millions of tiny water drops.",
-            "White smoke from chimneys.",
-            "Powdered sugar."
+            "Swim",
+            "Fly",
+            "Sing",
+            "Dig"
           ],
           correctIndex: 1
         },
         {
-          question: "When does rain fall from clouds?",
+          question: "What made Pip grow wings?",
           choices: [
-            "When clouds become too heavy with water.",
-            "When the sun gets too bright.",
-            "When birds fly through them.",
-            "When the wind stops blowing entirely."
+            "A sweet apple",
+            "A golden acorn",
+            "A magic flower",
+            "A blue berry"
+          ],
+          correctIndex: 1
+        },
+        {
+          question: "What color were Pip's wings?",
+          choices: [
+            "Fluffy white",
+            "Bright red",
+            "Dark green",
+            "Yellow"
+          ],
+          correctIndex: 0
+        }
+      ]
+    },
+    {
+      id: "elem_04",
+      citation: "From *Sparkle's Tea Party*, 2024.",
+      text: "Sparkle the fairy lived inside a red mushroom house. Every night, she invited her frog friends to a cozy tea party. Sparkle served sweet star tea in tiny acorn cups. They drank tea and danced under the glowing moon.",
+      questions: [
+        {
+          question: "Where did Sparkle the fairy live?",
+          choices: [
+            "Inside a red mushroom house",
+            "In a high tree trunk",
+            "Under a heavy rock",
+            "In a sea cave"
           ],
           correctIndex: 0
         },
         {
-          question: "Why is rain helpful to plants and animals?",
+          question: "Who came to Sparkle's tea party?",
           choices: [
-            "It gives them sweet syrup.",
-            "It waters trees and provides fresh drinking water.",
-            "It keeps the ground completely frozen.",
-            "It paints the leaves red."
+            "Her frog friends",
+            "Lions and tigers",
+            "Big horses",
+            "Birds"
+          ],
+          correctIndex: 0
+        },
+        {
+          question: "What did they drink tea from?",
+          choices: [
+            "Glass cups",
+            "Tiny acorn cups",
+            "Big buckets",
+            "Paper bags"
           ],
           correctIndex: 1
+        }
+      ]
+    },
+    {
+      id: "elem_05",
+      citation: "From *The Cloud Castle*, 2023.",
+      text: "Leo found a bright rainbow ribbon tied to a tree. When he pulled it, the ribbon turned into a magical floating staircase! Leo climbed up past the clouds and found a floating castle made of white cotton candy. He took a tiny bite, and it tasted like sweet strawberries!",
+      questions: [
+        {
+          question: "What did Leo find tied to a tree?",
+          choices: [
+            "A red rope",
+            "A bright rainbow ribbon",
+            "A golden key",
+            "A wooden stick"
+          ],
+          correctIndex: 1
+        },
+        {
+          question: "What was the floating castle made of?",
+          choices: [
+            "White cotton candy",
+            "Hard grey stones",
+            "Chocolate bricks",
+            "Green leaves"
+          ],
+          correctIndex: 0
+        },
+        {
+          question: "What did the cotton candy castle taste like?",
+          choices: [
+            "Sweet strawberries",
+            "Salty chips",
+            "Sour lemons",
+            "Peppermint"
+          ],
+          correctIndex: 0
         }
       ]
     },
 
     {
       id: "elem_06",
-      citation: "Excerpt adapted from *Exploring the Moon*, 2023.",
-      text: "The Moon is Earth’s closest neighbor in space. It orbits around our planet about once every twenty-seven days. Unlike Earth, the Moon has no air to breathe or liquid water to drink. Astronauts who visit the Moon must wear special suits to stay safe and breathe oxygen.",
+      citation: "From *Grumble the Fuzzy Monster*, 2022.",
+      text: "Grumble was a fuzzy purple monster who lived under Timmy's bed. Grumble was not scary at all. Every night, Grumble baked warm chocolate chip cookies. He shared them with Timmy while they read comic books together before bedtime.",
       questions: [
         {
-          question: "How long does it take for the Moon to orbit Earth?",
+          question: "What color was Grumble the monster?",
           choices: [
-            "About 27 days.",
-            "Exactly 365 days.",
-            "Only 2 hours.",
-            "Ten full years."
+            "Fuzzy purple",
+            "Bright green",
+            "Yellow",
+            "Orange"
           ],
           correctIndex: 0
         },
         {
-          question: "Why do astronauts need special spacesuits on the Moon?",
+          question: "What did Grumble like to bake every night?",
           choices: [
-            "There is no air to breathe or liquid water.",
-            "The Moon is covered in green mud.",
-            "Spacesuits make them invisible.",
-            "To help them run underwater."
+            "Warm chocolate chip cookies",
+            "Fruit pies",
+            "Pancakes",
+            "Vegetable soup"
           ],
           correctIndex: 0
         },
         {
-          question: "What is the main subject of this passage?",
+          question: "Where did Grumble live?",
           choices: [
-            "The Moon and astronaut space travel.",
-            "How airplanes fly in storm clouds.",
-            "The deepest rivers on Earth.",
-            "How to build a telescope."
+            "Under Timmy's bed",
+            "In a dark forest",
+            "On top of a mountain",
+            "Inside a barn"
           ],
           correctIndex: 0
         }
@@ -229,73 +228,73 @@ window.ELA_DATA = {
     },
     {
       id: "elem_07",
-      citation: "Excerpt adapted from *The Clever Penguin*, 2022.",
-      text: "Penguins are birds that cannot fly in the air, but they are super swimmers underwater! They use their stiff flippers like wings to glide through cold ocean currents. Thick coats of waterproof feathers keep them warm while hunting for tasty fish and krill.",
+      citation: "From *Bella the Star Catcher*, 2024.",
+      text: "Bella had a magical butterfly net that could catch falling stars. When a bright star swooped across the night sky, Bella scooped it up gently. She put the shining stars in a clear glass jar on her nightstand to light up her room like a soft nightlight.",
       questions: [
         {
-          question: "How do penguins use their flippers underwater?",
+          question: "What tool did Bella use to catch falling stars?",
           choices: [
-            "Like wings to glide through cold ocean currents.",
-            "To build wooden nests.",
-            "To climb high trees.",
-            "To catch falling leaves."
+            "A magical butterfly net",
+            "A big wooden bucket",
+            "A fishing rod",
+            "A tall ladder"
           ],
           correctIndex: 0
         },
         {
-          question: "What keeps penguins warm in icy water?",
+          question: "Where did Bella put the caught stars?",
           choices: [
-            "Thick coats of waterproof feathers.",
-            "Hot soup provided by scientists.",
-            "Wool blankets.",
-            "Sitting near underground volcanoes."
+            "In a clear glass jar",
+            "Under her pillow",
+            "In her pocket",
+            "In a closet"
           ],
           correctIndex: 0
         },
         {
-          question: "What do penguins hunt for food?",
+          question: "Why did Bella keep stars in her room?",
           choices: [
-            "Insects in mud.",
-            "Tasty fish and krill.",
-            "Wild berries.",
-            "Corn and wheat."
+            "To light it up like a nightlight",
+            "To keep her room warm",
+            "To eat for breakfast",
+            "To show her dog"
           ],
-          correctIndex: 1
+          correctIndex: 0
         }
       ]
     },
     {
       id: "elem_08",
-      citation: "Excerpt adapted from *Autumn Leaves*, 2024.",
-      text: "During autumn, tree leaves change from green to vibrant red, orange, and gold. As daylight hours shorten and temperatures cool, trees stop making green chlorophyll. Eventually, the leaves drop to the ground, creating a crunchy carpet for children to play in.",
+      citation: "From *Oliver's Magic Paintbrush*, 2023.",
+      text: "Oliver loved to paint with his magic wooden paintbrush. Whatever he painted came to life! One afternoon, Oliver painted a happy golden puppy on a piece of paper. The puppy barked softly, leaped off the page, and wagged its tail!",
       questions: [
         {
-          question: "What colors do leaves turn during autumn?",
+          question: "What kind of paintbrush did Oliver have?",
           choices: [
-            "Purple, pink, and white.",
-            "Vibrant red, orange, and gold.",
-            "Dark blue and pitch black.",
-            "Bright metallic silver."
-          ],
-          correctIndex: 1
-        },
-        {
-          question: "Why do trees stop making green chlorophyll in autumn?",
-          choices: [
-            "Daylight shortens and temperatures cool.",
-            "It rains continuously every day.",
-            "Birds eat all the leaf color.",
-            "Farming machines spray paint on trees."
+            "A magic wooden paintbrush",
+            "A heavy steel brush",
+            "A blue plastic brush",
+            "An old rusty brush"
           ],
           correctIndex: 0
         },
         {
-          question: "What happens after leaves drop to the ground?",
+          question: "What happened to Oliver's paintings?",
           choices: [
-            "They form a crunchy layer that children like to play in.",
-            "They instantly turn back into green buds.",
-            "They float directly into outer space.",
-            "They turn into hard rock."
+            "They came to life",
+            "They dissolved in water",
+            "They turned into dust",
+            "They disappeared"
+          ],
+          correctIndex: 0
+        },
+        {
+          question: "What animal did Oliver paint?",
+          choices: [
+            "A happy golden puppy",
+            "A tiny green frog",
+            "A big blue whale",
+            "A spotted kitten"
           ],
           correctIndex: 0
         }
@@ -303,36 +302,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_09",
-      citation: "Excerpt adapted from *The Helpful Firefighter*, 2023.",
-      text: "Firefighters are courageous community helpers who protect people and property from fires. They drive large red fire trucks equipped with long ladders and powerful water hoses. Firefighters also visit schools to teach children how to practice fire safety at home.",
+      citation: "From *Coral the Mermaid*, 2021.",
+      text: "Coral was a tiny mermaid with a shiny pink tail. She lost her favorite glowing blue pearl in the ocean sand. A friendly dolphin named Fin helped her dig. They found the blue pearl hidden inside a big purple seashell!",
       questions: [
         {
-          question: "What equipment do firefighters have on their trucks?",
+          question: "What color was Coral's tail?",
           choices: [
-            "Long ladders and powerful water hoses.",
-            "Snow plows and salt spreaders.",
-            "Solar panels and telescopes.",
-            "Baking ovens and mixer bowls."
+            "Shiny pink",
+            "Bright yellow",
+            "Deep green",
+            "Silver"
           ],
           correctIndex: 0
         },
         {
-          question: "What extra job do firefighters perform at schools?",
+          question: "What had Coral lost in the sand?",
           choices: [
-            "Teaching children about fire safety at home.",
-            "Teaching art and music lessons.",
-            "Cooking school lunches.",
-            "Building playground swings."
+            "Her glowing blue pearl",
+            "Her silver crown",
+            "Her wooden key",
+            "Her golden ring"
           ],
           correctIndex: 0
         },
         {
-          question: "Which word best describes firefighters in the passage?",
+          question: "Where was the pearl hidden?",
           choices: [
-            "Courageous.",
-            "Lazy.",
-            "Silly.",
-            "Careless."
+            "Inside a big purple seashell",
+            "Under a wooden ship",
+            "In a turtle's nest",
+            "Behind a big rock"
           ],
           correctIndex: 0
         }
@@ -340,36 +339,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_10",
-      citation: "Excerpt adapted from *Seeds on the Wind*, 2021.",
-      text: "Plants have clever ways of spreading their seeds to new growing spots. Dandelion seeds have fluffy white parachutes that float gently on breeze currents. Other seeds, like burrs, stick to animal fur and hitch a free ride across meadows.",
+      citation: "From *Barnaby Bear's Dance*, 2023.",
+      text: "Barnaby was a brown stuffed teddy bear who sat on Sarah's shelf. But when the clock struck midnight, magic filled the room! Barnaby hopped down and danced a silly jig with Sarah's toy soldiers until the sun came up.",
       questions: [
         {
-          question: "How do dandelion seeds travel to new places?",
+          question: "What kind of toy was Barnaby?",
           choices: [
-            "They float on breezes with fluffy white parachutes.",
-            "They swim through deep river streams.",
-            "They roll inside heavy iron wheels.",
-            "They dig underground tunnels."
+            "A brown stuffed teddy bear",
+            "A red toy train",
+            "A plastic robot",
+            "A wooden doll"
           ],
           correctIndex: 0
         },
         {
-          question: "How do burrs spread to new locations?",
+          question: "When did Barnaby come to life?",
           choices: [
-            "They stick to animal fur.",
-            "They fly like small airplanes.",
-            "They shoot like fireworks.",
-            "They stay attached to trees forever."
+            "When the clock struck midnight",
+            "At lunchtime",
+            "When it rained",
+            "In the morning"
           ],
           correctIndex: 0
         },
         {
-          question: "What is the main topic of this passage?",
+          question: "Who did Barnaby dance with?",
           choices: [
-            "How plants spread their seeds in different ways.",
-            "Why animals prefer to sleep in meadows.",
-            "How farmers harvest ripe wheat.",
-            "Why wind blows only in summer."
+            "Sarah's toy soldiers",
+            "A pet cat",
+            "The bedtime clock",
+            "The closet door"
           ],
           correctIndex: 0
         }
@@ -378,36 +377,36 @@ window.ELA_DATA = {
 
     {
       id: "elem_11",
-      citation: "Excerpt adapted from *Learning Soccer*, 2023.",
-      text: "Soccer is a popular team sport played on a green grass field with a round ball. Players kick and pass the ball using their feet, knees, and heads, but no hand touches are allowed except by the goalkeeper. Working as a cohesive team helps players score goals and have fun.",
+      citation: "From *The Gummy Bear Tree*, 2024.",
+      text: "Max walked into an enchanted garden and found a magic tree. Instead of green leaves, it had colorful gummy bears growing on its branches! Max picked a red gummy bear, and it tasted like delicious sweet cherry.",
       questions: [
         {
-          question: "Which player on a soccer team can use their hands?",
+          question: "What was special about the magic tree Max found?",
           choices: [
-            "The goalkeeper.",
-            "The team captain.",
-            "Every player on the field.",
-            "No player is ever allowed."
+            "Gummy bears grew on its branches",
+            "It grew chocolate bars",
+            "It sang nursery rhymes",
+            "It grew real money"
           ],
           correctIndex: 0
         },
         {
-          question: "What parts of the body can soccer players use to move the ball?",
+          question: "Where was the magic tree located?",
           choices: [
-            "Feet, knees, and heads.",
-            "Hands and elbows only.",
-            "Tennis rackets and bats.",
-            "Wooden sticks and ropes."
+            "In an enchanted garden",
+            "At the school park",
+            "On a snowy mountain",
+            "Inside a store"
           ],
           correctIndex: 0
         },
         {
-          question: "What makes playing soccer enjoyable according to the text?",
+          question: "What flavor did the red gummy bear taste like?",
           choices: [
-            "Working as a cohesive team to score goals.",
-            "Playing completely alone in the dark.",
-            "Keeping the ball out of reach from everyone.",
-            "Winning without following rules."
+            "Sweet cherry",
+            "Sour lime",
+            "Fresh orange",
+            "Grape"
           ],
           correctIndex: 0
         }
@@ -415,36 +414,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_12",
-      citation: "Excerpt adapted from *The Life of a Frog*, 2022.",
-      text: "A frog’s life begins inside a soft egg laid in freshwater ponds. When the egg hatches, out swims a tiny tadpole with gills and a long tail. As time passes, the tadpole grows strong legs, loses its tail, and transforms into an adult frog that leaps on land.",
+      citation: "From *Penny the Wizard Bunny*, 2022.",
+      text: "Penny was a fluffy white rabbit who wore a pointed star hat. She carried a tiny magic wand made from a willow twig. With one gentle wave of her wand, Penny turned plain orange carrots into delicious frosted birthday cakes!",
       questions: [
         {
-          question: "Where does a frog’s life start?",
+          question: "What kind of animal was Penny?",
           choices: [
-            "Inside a soft egg in a freshwater pond.",
-            "In a warm nest high in a pine tree.",
-            "Inside dry desert sand dunes.",
-            "On top of a snow mountain peak."
+            "A fluffy white rabbit",
+            "A little gray mouse",
+            "A yellow duckling",
+            "A brown squirrel"
           ],
           correctIndex: 0
         },
         {
-          question: "How does a tadpole change as it grows into an adult frog?",
+          question: "What was Penny's wand made from?",
           choices: [
-            "It grows legs and loses its tail.",
-            "It grows feathers and wings.",
-            "It gets smaller and loses its eyes.",
-            "It becomes a colorful butterfly."
+            "A willow twig",
+            "A shiny metal wire",
+            "A piece of glass",
+            "A lollipop stick"
           ],
           correctIndex: 0
         },
         {
-          question: "What allows a tadpole to breathe underwater?",
+          question: "What did Penny turn carrots into?",
           choices: [
-            "Gills.",
-            "Lungs.",
-            "Snorkels.",
-            "Fins."
+            "Frosted birthday cakes",
+            "Bowls of soup",
+            "Glass slippers",
+            "Piles of snow"
           ],
           correctIndex: 0
         }
@@ -452,36 +451,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_13",
-      citation: "Excerpt adapted from *Creating Pottery*, 2024.",
-      text: "Pottery is an ancient art form created from soft clay dug out of the soil. Artists shape wet clay on spinning potter's wheels or by hand. After drying, the clay piece is baked in a very hot oven called a kiln, making it sturdy enough to hold flowers or water.",
+      citation: "From *Ruby the Unicorn*, 2023.",
+      text: "Ruby was a gentle white unicorn with a sparkling horn. When Ruby trotted through the grassy forest, her hooves left behind trails of colorful glitter. Animals loved following Ruby because her glitter made the forest path shine brightly in the dark.",
       questions: [
         {
-          question: "What material is used to make pottery?",
+          question: "What kind of horn did Ruby have?",
           choices: [
-            "Soft clay dug from soil.",
-            "Melted plastic beads.",
-            "Carved pine wood.",
-            "Liquid glass poured into molds."
+            "A sparkling horn",
+            "A wooden horn",
+            "A dark horn",
+            "A tiny horn"
           ],
           correctIndex: 0
         },
         {
-          question: "What special oven is used to bake clay pottery?",
+          question: "What did Ruby leave behind when she trotted?",
           choices: [
-            "A kiln.",
-            "A microwave.",
-            "A toaster oven.",
-            "A campfire pit."
+            "Trails of colorful glitter",
+            "Footprints of mud",
+            "Sweet candy drops",
+            "Leaves"
           ],
           correctIndex: 0
         },
         {
-          question: "Why is clay baked in a kiln?",
+          question: "Why did forest animals follow Ruby?",
           choices: [
-            "To make it sturdy and hard.",
-            "To make it smell like cinnamon.",
-            "To make it soft like sponges.",
-            "To dissolve it in water."
+            "Her glitter made the path shine in the dark",
+            "She brought them food",
+            "She sang songs",
+            "She knew secret doors"
           ],
           correctIndex: 0
         }
@@ -489,36 +488,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_14",
-      citation: "Excerpt adapted from *Amazing Ants*, 2021.",
-      text: "Ants are tiny insects, but they possess amazing strength! A single ant can lift objects that weigh up to twenty times its own body weight. Ants live in organized colonies where every ant works together to gather food, build tunnels, and protect their queen.",
+      citation: "From *The Whispering Shell*, 2021.",
+      text: "Sam picked up a smooth pink seashell on the ocean shore. When he held it close to his ear, the shell whispered soft sleeping lullabies. Sam took the shell home and listened to its sweet songs every night before falling asleep.",
       questions: [
         {
-          question: "How much weight can an ant lift relative to its own size?",
+          question: "Where did Sam find the pink seashell?",
           choices: [
-            "Up to 20 times its body weight.",
-            "Only half its body weight.",
-            "100 times its height.",
-            "It cannot lift anything."
+            "On the ocean shore",
+            "Inside a garden bed",
+            "In a park sandbox",
+            "On top of a desk"
           ],
           correctIndex: 0
         },
         {
-          question: "Where do ants live?",
+          question: "What did the shell do when Sam held it to his ear?",
           choices: [
-            "In organized colonies.",
-            "In isolated lonely burrows.",
-            "Underwater in coral reefs.",
-            "Inside clouds."
+            "It whispered soft sleeping lullabies",
+            "It rang like a bell",
+            "It made ocean splash sounds",
+            "It whistled loudly"
           ],
           correctIndex: 0
         },
         {
-          question: "What roles do ants perform in their colony?",
+          question: "When did Sam listen to the shell's songs?",
           choices: [
-            "Gathering food, digging tunnels, and protecting the queen.",
-            "Sleeping all day long.",
-            "Flying across continents.",
-            "Spinning spider webs."
+            "Every night before falling asleep",
+            "Only in the morning",
+            "At school lunch",
+            "When playing games"
           ],
           correctIndex: 0
         }
@@ -526,36 +525,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_15",
-      citation: "Excerpt adapted from *The Story of Musical Instruments*, 2023.",
-      text: "Musical instruments make sounds through vibrations. When a musician plucks a guitar string or strikes a drumhead, sound waves travel through the air into our ears. Different instruments create unique sounds depending on their shape, size, and material.",
+      citation: "From *Maya's Magic Carpet*, 2024.",
+      text: "Maya had a soft purple rug in her bedroom. One afternoon, the rug hovered off the floor! Maya hopped on, and the magic carpet flew her out the window to the Candy Mountain, where rivers were made of sweet fruit punch.",
       questions: [
         {
-          question: "How do musical instruments produce sound?",
+          question: "What color was Maya's magic rug?",
           choices: [
-            "Through vibrations.",
-            "By glowing in darkness.",
-            "Through magnetic electricity.",
-            "By cooling down air."
+            "Soft purple",
+            "Bright green",
+            "Yellow",
+            "Dark blue"
           ],
           correctIndex: 0
         },
         {
-          question: "What happens when a musician plucks a guitar string?",
+          question: "Where did the magic carpet fly Maya?",
           choices: [
-            "Sound waves travel through air into ears.",
-            "The guitar changes colors.",
-            "The strings instantly break.",
-            "Light shines out."
+            "To the Candy Mountain",
+            "To the moon",
+            "To a deep cave",
+            "To the beach"
           ],
           correctIndex: 0
         },
         {
-          question: "What affects the unique sound an instrument produces?",
+          question: "What were rivers made of at Candy Mountain?",
           choices: [
-            "Its shape, size, and material.",
-            "The age of the person listening.",
-            "The price tag attached.",
-            "The day of the week."
+            "Sweet fruit punch",
+            "Chocolate milk",
+            "Cold water",
+            "Liquid honey"
           ],
           correctIndex: 0
         }
@@ -564,36 +563,36 @@ window.ELA_DATA = {
 
     {
       id: "elem_16",
-      citation: "Excerpt adapted from *School Garden Project*, 2024.",
-      text: "Students at Oak Elementary built a garden plot behind their gym. They planted red tomatoes, crisp carrots, and bright green lettuce. By watering the soil daily and pulling weeds, the students learned how fresh food grows from tiny seeds into healthy produce.",
+      citation: "From *The Magic Dancing Shoes*, 2023.",
+      text: "Ella found a pair of shiny red slippers in an old wooden chest. When she put them on, her feet felt lighter than air! The magic slippers tapped happily, making Ella float three inches off the ground as she danced across the room.",
       questions: [
         {
-          question: "What vegetables did students grow in their garden?",
+          question: "Where did Ella find the shiny red slippers?",
           choices: [
-            "Tomatoes, carrots, and lettuce.",
-            "Apples, oranges, and bananas.",
-            "Corn, potatoes, and wheat.",
-            "Pumpkins and watermelons only."
+            "In an old wooden chest",
+            "Under her bed",
+            "On a park bench",
+            "Inside a shoe store"
           ],
           correctIndex: 0
         },
         {
-          question: "How did the students care for their garden?",
+          question: "How did Ella's feet feel when she put the slippers on?",
           choices: [
-            "By watering soil daily and pulling weeds.",
-            "By keeping it in dark boxes.",
-            "By covering it with rocks.",
-            "By spraying sugary juice."
+            "Lighter than air",
+            "Very heavy",
+            "Cold and icy",
+            "Tired and sore"
           ],
           correctIndex: 0
         },
         {
-          question: "What important lesson did students learn from the project?",
+          question: "What happened when Ella danced in the slippers?",
           choices: [
-            "How fresh food grows from seeds into healthy produce.",
-            "How to build wooden fences.",
-            "How to sell vegetables at market.",
-            "How to predict weather changes."
+            "She floated off the ground",
+            "She fell over",
+            "Her shoes changed colors",
+            "She spun like a top"
           ],
           correctIndex: 0
         }
@@ -601,36 +600,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_17",
-      citation: "Excerpt adapted from *Nighttime Animals*, 2022.",
-      text: "Nocturnal animals are active during the night while resting throughout the day. Owls, bats, and raccoons have special adaptations like big eyes and keen hearing. These sharp senses help them navigate, hunt for food, and stay safe in complete darkness.",
+      citation: "From *Beep the Robot*, 2022.",
+      text: "Beep was a friendly tin robot with a wind-up key on his back. When Tommy turned the key three times, Beep’s eyes lit up blue! Beep waddled around the bedroom floor, making happy squeaking sounds and dropping shiny stickers.",
       questions: [
         {
-          question: "What does the word 'nocturnal' mean?",
+          question: "What was on the back of Beep the robot?",
           choices: [
-            "Active during the night.",
-            "Sleeping all night long.",
-            "Living high in cold mountains.",
-            "Able to swim underwater."
+            "A wind-up key",
+            "A magic button",
+            "A tiny lever",
+            "A solar panel"
           ],
           correctIndex: 0
         },
         {
-          question: "Which features help nocturnal animals see and hunt in the dark?",
+          question: "How many times did Tommy turn the key?",
           choices: [
-            "Big eyes and keen hearing.",
-            "Bright colorful feathers.",
-            "Long bushy tails.",
-            "Heavy fur coats."
+            "Three times",
+            "Ten times",
+            "One time",
+            "Five times"
           ],
           correctIndex: 0
         },
         {
-          question: "Which of the following is a nocturnal animal according to the passage?",
+          question: "What did Beep drop while waddling around?",
           choices: [
-            "An owl.",
-            "A butterfly.",
-            "A rooster.",
-            "A honeybee."
+            "Shiny stickers",
+            "Metal nuts",
+            "Bread crumbs",
+            "Small coins"
           ],
           correctIndex: 0
         }
@@ -638,36 +637,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_18",
-      citation: "Excerpt adapted from *Recycling Every Day*, 2023.",
-      text: "Recycling is an important way to reduce trash and conserve Earth’s resources. Items made of paper, cardboard, glass, and aluminum can be processed and remade into new items. When communities recycle regularly, fewer raw materials are needed from forests and mines.",
+      citation: "From *Frosty's Magic Sun Hat*, 2024.",
+      text: "Frosty was a cheerful snowman who loved summertime. Sun spirit fairies gave him a magic yellow hat. As long as Frosty wore the hat, the warm sun made him feel cozy instead of melting his snowy body!",
       questions: [
         {
-          question: "Which items can be recycled according to the text?",
+          question: "Who gave Frosty the snowman his magic hat?",
           choices: [
-            "Paper, cardboard, glass, and aluminum.",
-            "Food scraps and leftover soup.",
-            "Dirty towels and socks.",
-            "Old wooden furniture only."
+            "Sun spirit fairies",
+            "A helpful bird",
+            "A young boy",
+            "A forest gnome"
           ],
           correctIndex: 0
         },
         {
-          question: "Why is recycling beneficial for Earth?",
+          question: "What color was Frosty's magic hat?",
           choices: [
-            "It reduces waste and conserves natural resources.",
-            "It makes plastic disappear instantly.",
-            "It creates more trash bins everywhere.",
-            "It stops rainfall."
+            "Yellow",
+            "Red",
+            "Blue",
+            "Black"
           ],
           correctIndex: 0
         },
         {
-          question: "What happens when communities recycle regularly?",
+          question: "What did the magic hat prevent Frosty from doing in summer?",
           choices: [
-            "Fewer raw materials are taken from forests and mines.",
-            "Factories close down completely.",
-            "Trash bins become illegal.",
-            "Paper becomes impossible to find."
+            "Melting",
+            "Freezing",
+            "Sleeping",
+            "Falling over"
           ],
           correctIndex: 0
         }
@@ -675,36 +674,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_19",
-      citation: "Excerpt adapted from *How Bridges Work*, 2021.",
-      text: "Bridges allow cars, trains, and people to cross safely over wide rivers and deep valleys. Suspension bridges use strong steel cables anchored to tall towers to hold up heavy roadways. Engineers design bridges carefully to ensure they can withstand strong wind gusts and heavy traffic loads.",
+      citation: "From *Gideon the Teapot Gnome*, 2023.",
+      text: "Gideon was a tiny garden gnome who was only three inches tall. He built his cozy home inside an old blue ceramic teapot. Gideon used a clover leaf for a blanket and drank raindrops from a tiny acorn cup.",
       questions: [
         {
-          question: "What keeps suspension bridges supported?",
+          question: "How tall was Gideon the gnome?",
           choices: [
-            "Strong steel cables anchored to tall towers.",
-            "Floating wooden logs.",
-            "Ropes made of cotton string.",
-            "Heavy stone blocks under water."
+            "Three inches tall",
+            "One foot tall",
+            "Five feet tall",
+            "Ten inches tall"
           ],
           correctIndex: 0
         },
         {
-          question: "Why do engineers design bridges carefully?",
+          question: "Where did Gideon build his home?",
           choices: [
-            "So bridges withstand wind gusts and heavy traffic.",
-            "To make them look like giant rainbows.",
-            "So boats cannot pass under them.",
-            "To stop cars from driving fast."
+            "Inside an old blue ceramic teapot",
+            "Under a hollow log",
+            "In a birdhouse",
+            "Inside a glass bottle"
           ],
           correctIndex: 0
         },
         {
-          question: "What is the purpose of a bridge according to the text?",
+          question: "What did Gideon use for a blanket?",
           choices: [
-            "To allow traffic to cross over rivers and valleys.",
-            "To block water flow in rivers.",
-            "To generate electrical power.",
-            "To collect rainwater."
+            "A clover leaf",
+            "A cotton napkin",
+            "A dry fallen leaf",
+            "A wool sock"
           ],
           correctIndex: 0
         }
@@ -712,36 +711,36 @@ window.ELA_DATA = {
     },
     {
       id: "elem_20",
-      citation: "Excerpt adapted from *The Story of Bicycles*, 2023.",
-      text: "Bicycles are eco-friendly transportation vehicles powered by human pedaling. Riding a bicycle helps keep our heart and muscles strong while keeping air clean because bikes produce zero exhaust emissions. Always wearing a helmet protects your head during bicycle adventures.",
+      citation: "From *Timmy's Wishing Well*, 2024.",
+      text: "Timmy walked to the old stone wishing well in his grandmother's backyard. He tossed a shiny silver coin down into the water and wished for a puppy. That evening, a friendly golden stray puppy ran right up to Timmy's porch!",
       questions: [
         {
-          question: "Why are bicycles considered eco-friendly?",
+          question: "Where was the stone wishing well located?",
           choices: [
-            "They produce zero exhaust emissions.",
-            "They are made entirely of recycled glass.",
-            "They travel faster than jet airplanes.",
-            "They run on solar electricity."
+            "In his grandmother's backyard",
+            "In the school courtyard",
+            "At the city park",
+            "In a forest clearing"
           ],
           correctIndex: 0
         },
         {
-          question: "What health benefit comes from riding a bike?",
+          question: "What did Timmy throw into the well?",
           choices: [
-            "It strengthens heart and muscle health.",
-            "It makes you grow taller overnight.",
-            "It cures eye vision problems.",
-            "It improves singing pitch."
+            "A shiny silver coin",
+            "A smooth pebble",
+            "A flower petal",
+            "A wooden button"
           ],
           correctIndex: 0
         },
         {
-          question: "What safety tip is recommended in the text?",
+          question: "What was Timmy's wish?",
           choices: [
-            "Always wear a protective helmet.",
-            "Ride with closed eyes.",
-            "Only ride during rainstorms.",
-            "Never use bicycle brakes."
+            "For a puppy",
+            "For a new bicycle",
+            "For sweet candy",
+            "For a flying toy"
           ],
           correctIndex: 0
         }
