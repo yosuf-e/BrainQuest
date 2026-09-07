@@ -9,8 +9,45 @@
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/128/15126/15126762.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="ela_data.js"></script>
+  <style>
+  /* Full-resolution Minecraft sky background */
+  .minecraft-sky-full {
+    background-image: url("https://lh3.googleusercontent.com/EPjhUT5GzcG6lFWfi8lsNFNc-F4ZbjxSxtznwvsrzRnvUmhAFZfpH9oLib4wyrOuj_wevmTQMl9bmOMkJ6Vo54AacV8UaiKkLAyFMXc2l6IGBhromjMnNlW3iNfeO2itxqNkAynV");
+    background-size: cover;        /* keep full resolution */
+    background-position: center;   /* keep centered */
+    background-repeat: no-repeat;  /* no tiling */
+    animation: skyFloat 15s ease-in-out infinite;
+    position: relative;
+  }
+
+  /* Soft glow overlay */
+  .minecraft-sky-full::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15), rgba(0,0,0,0.4));
+    animation: skyGlow 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Gentle drifting movement */
+  @keyframes skyFloat {
+    0%   { background-position: center; }
+    50%  { background-position: center 20px; }
+    100% { background-position: center; }
+  }
+
+  /* Lighten/darken breathing effect */
+  @keyframes skyGlow {
+    0%   { opacity: 0.35; }
+    50%  { opacity: 0.55; }
+    100% { opacity: 0.35; }
+  }
+</style>
+
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen">
+<body class="minecraft-sky-full text-slate-100 min-h-screen">
 
   <!-- Top Nav -->
   <nav class="bg-slate-800/90 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
@@ -58,7 +95,7 @@
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
           <img src="https://cdn-icons-png.flaticon.com/128/5526/5526264.png" alt="ELA-Icon" style="height: 40px; width: 40px;">
           <h2 class="text-xl font-semibold">ELA Quests</h2>
-          <p class="text-sm text-slate-300">Reading passages with MCQs loaded from JSON.</p>
+          <p class="text-sm text-slate-300">Reading passages with MCQs.</p>
           <button data-page="ela"
                   class="page-link mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full">
             Start ELA
@@ -567,99 +604,107 @@
     });
     generateMathQuestion(parseInt(mathGradeSelect.value, 10));
 
-    // ELA logic (JSON)
-    const elaLevelSelect = document.getElementById('elaLevel');
-    const elaCitation = document.getElementById('elaCitation');
-    const elaText = document.getElementById('elaText');
-    const elaQuestionsDiv = document.getElementById('elaQuestions');
-    const elaFeedback = document.getElementById('elaFeedback');
-    let elaData = null;
+    // ELA logic (JS data)
+const elaLevelSelect = document.getElementById('elaLevel');
+const elaCitation = document.getElementById('elaCitation');
+const elaText = document.getElementById('elaText');
+const elaQuestionsDiv = document.getElementById('elaQuestions');
+const elaFeedback = document.getElementById('elaFeedback');
+let elaData = null;
 
-    async function loadElaData() {
-      if (!elaData) {
-        try {
-          const res = await fetch('ela_data.json');
-          elaData = await res.json();
-        } catch (e) {
-          elaCitation.textContent = 'Error loading ELA data.';
-          soundTimeUp.currentTime = 0;
-          soundTimeUp.play();
-          return;
-        }
+function loadElaData() {
+  // Load once from window.ELA_DATA
+  if (!elaData) {
+    try {
+      if (!window.ELA_DATA) {
+        throw new Error("ELA_DATA is not defined. Make sure ela_data.js is loaded.");
       }
-
-      const level = elaLevelSelect.value;
-      const entry = elaData[level];
-      if (!entry) return;
-
-      elaCitation.textContent = entry.citation;
-      elaText.textContent = entry.text;
-      elaQuestionsDiv.innerHTML = '';
-      elaFeedback.textContent = '';
-
-      entry.questions.forEach((q, idx) => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'bg-slate-900/70 border border-slate-700 rounded-xl p-3 space-y-2';
-
-        const qText = document.createElement('p');
-        qText.className = 'text-sm font-semibold';
-        qText.textContent = `Q${idx + 1}. ${q.question}`;
-        wrapper.appendChild(qText);
-
-        const choicesDiv = document.createElement('div');
-        choicesDiv.className = 'space-y-1';
-
-        q.choices.forEach((choice, cIdx) => {
-          const label = document.createElement('label');
-          label.className = 'flex items-center gap-2 text-sm';
-
-          const input = document.createElement('input');
-          input.type = 'radio';
-          input.name = `ela-q-${idx}`;
-          input.value = cIdx;
-          input.className = 'accent-cyan-400';
-
-          label.appendChild(input);
-          label.appendChild(document.createTextNode(choice));
-          choicesDiv.appendChild(label);
-        });
-
-        wrapper.appendChild(choicesDiv);
-        elaQuestionsDiv.appendChild(wrapper);
-      });
-
-      const submitBtn = document.createElement('button');
-      submitBtn.textContent = 'Submit Answers';
-      submitBtn.className =
-        'mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold';
-      submitBtn.addEventListener('click', () => {
-        let correctCount = 0;
-        entry.questions.forEach((q, idx) => {
-          const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
-          if (selected && parseInt(selected.value, 10) === q.correctIndex) {
-            correctCount++;
-          }
-        });
-        if (correctCount === entry.questions.length) {
-          elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +20 XP and +20 coins.`;
-          elaFeedback.className = 'text-sm text-emerald-400';
-          soundCorrect.currentTime = 0;
-          soundCorrect.play();
-          addCoins(20);
-          addXP(20);
-          launchConfetti();
-        } else {
-          elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
-          elaFeedback.className = 'text-sm text-pink-400';
-          soundWrong.currentTime = 0;
-          soundWrong.play();
-        }
-      });
-
-      elaQuestionsDiv.appendChild(submitBtn);
+      elaData = window.ELA_DATA;
+    } catch (e) {
+      console.error("ELA JSON Load Error:", e);
+      elaCitation.textContent = "Error loading ELA data.";
+      soundTimeUp.currentTime = 0;
+      soundTimeUp.play();
+      return;
     }
+  }
 
-    document.getElementById('loadEla').addEventListener('click', loadElaData);
+  const level = elaLevelSelect.value;
+  const entry = elaData[level];
+  if (!entry) {
+    elaCitation.textContent = "No data found for this level.";
+    return;
+  }
+
+  elaCitation.textContent = entry.citation;
+  elaText.textContent = entry.text;
+  elaQuestionsDiv.innerHTML = "";
+  elaFeedback.textContent = "";
+
+  entry.questions.forEach((q, idx) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "bg-slate-900/70 border border-slate-700 rounded-xl p-3 space-y-2";
+
+    const qText = document.createElement("p");
+    qText.className = "text-sm font-semibold";
+    qText.textContent = `Q${idx + 1}. ${q.question}`;
+    wrapper.appendChild(qText);
+
+    const choicesDiv = document.createElement("div");
+    choicesDiv.className = "space-y-1";
+
+    q.choices.forEach((choice, cIdx) => {
+      const label = document.createElement("label");
+      label.className = "flex items-center gap-2 text-sm";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = `ela-q-${idx}`;
+      input.value = cIdx;
+      input.className = "accent-cyan-400";
+
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(choice));
+      choicesDiv.appendChild(label);
+    });
+
+    wrapper.appendChild(choicesDiv);
+    elaQuestionsDiv.appendChild(wrapper);
+  });
+
+  const submitBtn = document.createElement("button");
+  submitBtn.textContent = "Submit Answers";
+  submitBtn.className =
+    "mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold";
+  submitBtn.addEventListener("click", () => {
+    let correctCount = 0;
+    entry.questions.forEach((q, idx) => {
+      const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
+      if (selected && parseInt(selected.value, 10) === q.correctIndex) {
+        correctCount++;
+      }
+    });
+    if (correctCount === entry.questions.length) {
+      elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +20 XP and +20 coins.`;
+      elaFeedback.className = "text-sm text-emerald-400";
+      soundCorrect.currentTime = 0;
+      soundCorrect.play();
+      addCoins(20);
+      addXP(20);
+      launchConfetti();
+    } else {
+      elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
+      elaFeedback.className = "text-sm text-pink-400";
+      soundWrong.currentTime = 0;
+      soundWrong.play();
+    }
+  });
+
+  elaQuestionsDiv.appendChild(submitBtn);
+}
+
+document.getElementById("loadEla").addEventListener("click", loadElaData);
+
 
     // Games logic with iframe + timer
     const gameContainer = document.getElementById('gameContainer');
